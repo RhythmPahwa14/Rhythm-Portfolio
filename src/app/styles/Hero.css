@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap');
+
+.hero {
+  color: rgb(205, 205, 205);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0;
+}
+
+.hero h1 {
+
+  font-family: "Mrs Saint Delafield", cursive;
+  font-weight: 400;
+  font-size: 12rem;
+  font-style: normal;
+  margin: 0;
+}
+
+.tagline {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  letter-spacing: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 80px;
+  }
+  
+  .tagline {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 60px;
+  }
+  
+  .tagline {
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+  }
+}

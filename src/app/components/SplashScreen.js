@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './SplashScreen.css';
+import '../styles/SplashScreen.css'; // Ensure you have this CSS file for styles
 
 export default function SplashScreen({ onComplete }) {
   const [showNamaste, setShowNamaste] = useState(true);
