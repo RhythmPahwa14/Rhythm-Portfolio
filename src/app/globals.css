@@ -11,3 +11,20 @@ body {
   height: 100vh;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.splash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: radial-gradient(circle, #ffefba, #ffffff);
+}
+
+.namaste {
+  font-size: 4rem;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
