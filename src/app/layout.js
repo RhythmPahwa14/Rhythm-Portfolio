@@ -12,9 +12,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Rhythm Portfolio",
-  description: "Portfolio of Rhythm",
-  author: "Rhythm",
+  title: "Rhythm Pahwa",
+  description: "Portfolio of Rhythm Pahwa",
+  author: "Rhythm Pahwa",
 };
 
 export default function RootLayout({ children }) {

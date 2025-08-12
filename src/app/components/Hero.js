@@ -6,7 +6,7 @@ export default function Hero() {
       <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap');
         .hero {
-          color: #fff;
+          color: #d7d7d7ff;
           text-align: center;
           display: flex;
           flex-direction: column;
