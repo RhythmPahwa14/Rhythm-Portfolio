@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import SplashScreen from './components/SplashScreen';
 import Navbar from './components/Navbar'; 
 import About from './about/page';
+import Skills from './skills/page';
 
 
 export default function Page() {
@@ -22,6 +23,7 @@ export default function Page() {
         <Hero />
       )}
       <About />
+      <Skills />
     </main>
   );
 }
