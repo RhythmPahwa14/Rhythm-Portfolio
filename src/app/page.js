@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import About from './about/page';
 import Skills from './skills/page';
 import Projects from './projects/page';
+import Footer from './components/Footer';
 
 
 export default function Page() {
@@ -26,6 +27,7 @@ export default function Page() {
       <About />
       <Skills />
       <Projects />
+      <Footer />
     </main>
   );
 }
