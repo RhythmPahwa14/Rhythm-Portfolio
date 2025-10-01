@@ -31,8 +31,7 @@ export default function About() {
       >
         <h2 className="text-4xl font-bold mb-4 text-[#ffcc70]">About Me</h2>
         <p className="text-lg leading-relaxed text-gray-400 mb-6">
-          Hi, I'm <span className="text-white font-semibold">Rhythm Pahwa</span>, a passionate full-stack developer
-          with a love for building modern web applications. I specialize in React, Next.js, and backend APIs, 
+          Hi, I'm <span className="text-white font-semibold">Rhythm Pahwa</span>, specialize in React, Next.js, and springboot. I love crafting beautiful, functional web applications
           and enjoy turning creative ideas into interactive experiences.
         </p>
         <p className="text-lg leading-relaxed text-gray-400">
