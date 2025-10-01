@@ -1,106 +1,274 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Code, Database, Cloud, Layers, Star, TrendingUp } from 'lucide-react';
 
 const Skills = () => {
-  // Skills data organized by categories to match the desired layout
+  const [imageErrors, setImageErrors] = useState({});
+
+  // Skills data organized by categories with enhanced information
   const skillsData = {
-    languages: [
-      { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
-      { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-      { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' }
-    ],
-    frameworks: [
-      { name: 'Spring-Boot', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg' },
-      { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-      { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' }
-    ],
-    databases: [
-      { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-      { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-      { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' }
-    ],
-    cloudDevOps: [
-      { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg' },
-      { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' }
-    ]
+    languages: {
+      title: 'Programming Languages',
+      icon: Code,
+      color: 'from-blue-500 to-cyan-500',
+      skills: [
+        { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', level: 90 },
+        { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', level: 85 },
+        { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', level: 80 },
+        { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', level: 85 }
+      ]
+    },
+    frameworks: {
+      title: 'Frameworks & Libraries',
+      icon: Layers,
+      color: 'from-purple-500 to-pink-500',
+      skills: [
+        { name: 'Spring Boot', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg', level: 88 },
+        { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', level: 90 },
+        { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', level: 82 },
+        { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', level: 85 }
+      ]
+    },
+    databases: {
+      title: 'Databases',
+      icon: Database,
+      color: 'from-green-500 to-emerald-500',
+      skills: [
+        { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', level: 85 },
+        { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', level: 80 },
+        { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', level: 75 }
+      ]
+    },
+    cloudDevOps: {
+      title: 'Cloud & DevOps',
+      icon: Cloud,
+      color: 'from-orange-500 to-red-500',
+      skills: [
+        { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg', level: 78 },
+        { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', level: 80 },
+        { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', level: 90 }
+      ]
+    }
   };
 
-  const SkillCard = ({ skill }) => {
+  const handleImageError = (skillName) => {
+    setImageErrors(prev => ({ ...prev, [skillName]: true }));
+  };
+
+  const SkillCard = ({ skill, delay = 0, categoryColor }) => {
     return (
-      <div className="flex items-center space-x-3 p-3 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-800/50 dark:hover:bg-gray-700/50 transition-all duration-300 backdrop-blur-sm border border-gray-300 hover:border-gray-400 dark:border-gray-600/30 dark:hover:border-gray-500/50">
-        <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
-          <img 
-            src={skill.icon} 
-            alt={skill.name}
-            className="w-8 h-8 object-contain"
-            onError={(e) => {
-              e.target.style.display = 'none';
-            }}
+      <motion.div
+        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.5, delay }}
+        viewport={{ once: true }}
+        whileHover={{ y: -8, scale: 1.05 }}
+        className="relative group"
+      >
+        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 relative overflow-hidden">
+          {/* Gradient Overlay */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${categoryColor} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-xl`}></div>
+          
+          {/* Skill Icon */}
+          <div className="relative z-10 flex flex-col items-center space-y-4">
+            <div className="w-16 h-16 flex items-center justify-center bg-white/10 rounded-lg group-hover:bg-white/20 transition-all duration-300">
+              {!imageErrors[skill.name] ? (
+                <img 
+                  src={skill.icon} 
+                  alt={skill.name}
+                  className="w-12 h-12 object-contain"
+                  onError={() => handleImageError(skill.name)}
+                />
+              ) : (
+                <Code className="w-8 h-8 text-white" />
+              )}
+            </div>
+            
+            {/* Skill Name */}
+            <h4 className="text-white font-semibold text-center">{skill.name}</h4>
+            
+            {/* Skill Level Bar */}
+            <div className="w-full">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-xs text-gray-300">Proficiency</span>
+                <span className="text-xs text-gray-300">{skill.level}%</span>
+              </div>
+              <div className="w-full bg-white/20 rounded-full h-2">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.level}%` }}
+                  transition={{ duration: 1, delay: delay + 0.3 }}
+                  viewport={{ once: true }}
+                  className={`h-2 bg-gradient-to-r ${categoryColor} rounded-full relative overflow-hidden`}
+                >
+                  <div className="absolute inset-0 bg-white/30 animate-pulse"></div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
+  const CategorySection = ({ categoryKey, category, index }) => {
+    const IconComponent = category.icon;
+    
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.2 }}
+        viewport={{ once: true }}
+        className="mb-16"
+      >
+        {/* Category Header */}
+        <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: index * 0.2 + 0.1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center space-x-3 mb-4"
+          >
+            <div className={`p-3 rounded-xl bg-gradient-to-r ${category.color} bg-opacity-20`}>
+              <IconComponent className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white">
+              {category.title}
+            </h3>
+          </motion.div>
+          
+          {/* Decorative Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
+            viewport={{ once: true }}
+            className={`w-24 h-1 bg-gradient-to-r ${category.color} mx-auto rounded-full`}
           />
         </div>
-        <span className="text-gray-800 dark:text-white font-medium text-sm">{skill.name}</span>
-      </div>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {category.skills.map((skill, skillIndex) => (
+            <SkillCard 
+              key={skill.name} 
+              skill={skill} 
+              delay={skillIndex * 0.1}
+              categoryColor={category.color}
+            />
+          ))}
+        </div>
+      </motion.div>
     );
   };
 
   return (
-    <section id="skills" className="py-20 bg-white dark:bg-black transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-6">
-        {/* Main Skills Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4 tracking-tight">
-            Skills
-          </h2>
-          
-        </div>
-
-        {/* Languages */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-center mb-6 text-black dark:text-white" id="skills-languages">
-            Languages
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {skillsData.languages.map((skill) => (
-              <SkillCard key={skill.name} skill={skill} />
-            ))}
-          </div>
-        </div>
-
-        {/* Frameworks and Libraries */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-center mb-6 text-black dark:text-white" id="skills-frameworks">
-            Frameworks and Libraries
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {skillsData.frameworks.map((skill) => (
-              <SkillCard key={skill.name} skill={skill} />
-            ))}
-          </div>
-        </div>
-
-        {/* Databases */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-center mb-6 text-black dark:text-white" id="skills-databases">
-            Databases
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {skillsData.databases.map((skill) => (
-              <SkillCard key={skill.name} skill={skill} />
-            ))}
-          </div>
-        </div>
-
-        {/* Cloud and DevOps */}
-        <div className="mb-12">
-          <h3 className="text-2xl font-bold text-center mb-6 text-black dark:text-white" id="skills-cloud">
-            Cloud and DevOps
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {skillsData.cloudDevOps.map((skill) => (
-              <SkillCard key={skill.name} skill={skill} />
-            ))}
-          </div>
-        </div>
+    <section id="skills" className="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl"></div>
       </div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="inline-block mb-4"
+          >
+            <span className="px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-medium backdrop-blur-sm">
+              Technical Expertise
+            </span>
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-5xl md:text-6xl font-bold mb-6"
+          >
+            <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+              Skills & 
+            </span>
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              {" "}Technologies
+            </span>
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+          >
+            A comprehensive toolkit of modern technologies and frameworks that I leverage 
+            to build{" "}
+            <span className="text-blue-400 font-semibold">scalable applications</span>,{" "}
+            <span className="text-purple-400 font-semibold">robust systems</span>, and{" "}
+            <span className="text-pink-400 font-semibold">innovative solutions</span>.
+          </motion.p>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="flex justify-center items-center space-x-8 mt-8"
+          >
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400 flex items-center justify-center">
+                <TrendingUp className="w-6 h-6 mr-2" />
+                15+
+              </div>
+              <div className="text-sm text-gray-400">Technologies</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-purple-400 flex items-center justify-center">
+                <Star className="w-6 h-6 mr-2" />
+                3+
+              </div>
+              <div className="text-sm text-gray-400">Years Experience</div>
+            </div>
+          </motion.div>
+
+          {/* Decorative Line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-8 rounded-full"
+          />
+        </motion.div>
+
+        {/* Skills Categories */}
+        {Object.entries(skillsData).map(([key, category], index) => (
+          <CategorySection 
+            key={key} 
+            categoryKey={key} 
+            category={category} 
+            index={index} 
+          />
+        ))}
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+      <div className="absolute bottom-32 right-1/3 w-1 h-1 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-pink-400 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
     </section>
   );
 };
