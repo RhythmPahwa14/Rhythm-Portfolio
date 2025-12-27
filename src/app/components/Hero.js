@@ -17,7 +17,7 @@ export default function Hero() {
     canvas.height = window.innerHeight;
 
     // Create dots
-    const numDots = 50;
+    const numDots = 60;
     const dots = [];
     const colors = [
       { r: 66, g: 153, b: 225 },   // blue
@@ -34,7 +34,7 @@ export default function Hero() {
         vx: (Math.random() - 0.5) * 2.5,
         vy: (Math.random() - 0.5) * 2.5,
         color: color,
-        radius: Math.random() * 2 + 2
+        radius: Math.random() * 3 + 2
       });
     }
 
@@ -61,7 +61,7 @@ export default function Hero() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
-            const opacity = (1 - distance / 120) * 0.04;
+            const opacity = (1 - distance / 120) * 0.06;
             ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
