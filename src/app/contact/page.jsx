@@ -93,8 +93,8 @@ const ContactPage = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'sandeepvashishtha@example.com',
-      link: 'mailto:sandeepvashishtha@example.com',
+      value: 'rhythmpahwa14@gmail.com',
+      link: 'mailto:rhythmpahwa14@gmail.com',
       color: 'text-green-400'
     },
     {

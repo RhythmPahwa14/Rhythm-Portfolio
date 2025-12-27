@@ -23,7 +23,7 @@ const Footer = () => {
     {
       name: 'Email',
       icon: Mail,
-      url: 'mailto:sandeepvashishtha@example.com',
+      url: 'mailto:rhythmpahwa14@gmail.com',
       color: 'hover:text-green-400'
     }
   ];
@@ -61,7 +61,7 @@ const Footer = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Sandeep Vashishtha
+                Rhythm Pahwa
               </span>
             </motion.h3>
             <p className="text-gray-300 text-lg mb-6 leading-relaxed max-w-md">
@@ -137,7 +137,7 @@ const Footer = () => {
                 whileHover={{ x: 5 }}
               >
                 <Mail className="w-5 h-5 mr-3 text-green-400" />
-                <span>sandeepvashishtha@example.com</span>
+                <span>rhythmpahwa14@gmail.com</span>
               </motion.div>
               
               <motion.div 
@@ -177,7 +177,7 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            © 2025 Sandeep Vashishtha. Made with 
+            © 2025 Rhythm Pahwa. Made with 
             <motion.span
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}

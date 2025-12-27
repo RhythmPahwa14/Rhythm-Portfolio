@@ -24,7 +24,7 @@ export default function Hero() {
     },
     {
       icon: Mail,
-      url: 'mailto:sandeepvashishtha@example.com',
+      url: 'mailto:rhythmpahwa14@gmail.com',
       label: 'Email'
     }
   ];
