@@ -37,8 +37,8 @@ export default function AnimatedBackground() {
       dots.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 3.5,
-        vy: (Math.random() - 0.5) * 3.5,
+        vx: (Math.random() - 0.5) * 5,
+        vy: (Math.random() - 0.5) * 5,
         color: color,
         radius: Math.random() * 3 + 2
       });
@@ -77,14 +77,11 @@ export default function AnimatedBackground() {
           }
         }
 
-        // Draw dot with shadow/glow
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.8)`;
+        // Draw dot
         ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.9)`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0;
       });
 
       requestAnimationFrame(animate);
@@ -101,8 +98,8 @@ export default function AnimatedBackground() {
         dots.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 3.5,
-          vy: (Math.random() - 0.5) * 3.5,
+          vx: (Math.random() - 0.5) * 5,
+          vy: (Math.random() - 0.5) * 5,
           color: color,
           radius: Math.random() * 3 + 2
         });
