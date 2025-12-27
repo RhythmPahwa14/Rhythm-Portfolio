@@ -78,7 +78,7 @@ export default function AnimatedBackground() {
         }
 
         // Draw dot
-        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.6)`;
+        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.4)`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
@@ -118,5 +118,6 @@ export default function AnimatedBackground() {
     />
   );
 }
+
 
 
