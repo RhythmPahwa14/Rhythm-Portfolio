@@ -189,11 +189,15 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1.0 }}
           className="hero-description"
         >
-          Debugging: finding where I lost my rhythm.
+          <span style={{ fontStyle: 'italic', fontSize: '1.1em' }}>
+            " Debugging: finding where I lost my rhythm "
+          </span>
+          <br /><br />
+          <strong style={{ color: 'rgba(255, 255, 255, 1)', fontSize: '1.2em' }}>
+            Amazon ML Summer School'25 - Participant
+          </strong>
           <br />
-          <strong style={{ color: 'rgba(255, 255, 255, 1)' }}>Amazon ML Summer School'25 - Participant</strong>
-          <br />
-          <span style={{ fontSize: '0.9em' }}>
+          <span style={{ fontFamily: 'monospace', fontSize: '0.95em', display: 'block', marginTop: '0.5rem', lineHeight: '1.8' }}>
             ~ training AI/ML models that perform better than me.
             <br />
             ~ working with CI/CD pipelines to streamline deployment workflows.
