@@ -5,7 +5,7 @@ import AnimatedBackground from '../components/AnimatedBackground';
 
 export default function About() {
   return (
-    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-gray-200 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-20 bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900 text-gray-200 overflow-hidden">
       <AnimatedBackground />
       
       {/* Left: Photo */}

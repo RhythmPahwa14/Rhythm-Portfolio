@@ -58,7 +58,7 @@ export default function AnimatedBackground() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
-            const opacity = (1 - distance / 120) * 0.06;
+            const opacity = (1 - distance / 120) * 0.07;
             ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -92,7 +92,7 @@ export default function AnimatedBackground() {
   return (
     <canvas 
       ref={canvasRef} 
-      className="absolute top-0 left-0 w-full h-full -z-10"
+      className="absolute top-0 left-0 w-full h-full z-0"
       style={{ pointerEvents: 'none' }}
     />
   );

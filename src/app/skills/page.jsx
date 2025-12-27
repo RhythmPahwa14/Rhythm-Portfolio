@@ -167,7 +167,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+    <section id="skills" className="py-20 bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900 relative overflow-hidden">
       <AnimatedBackground />
 
       <div className="relative max-w-7xl mx-auto px-6">
