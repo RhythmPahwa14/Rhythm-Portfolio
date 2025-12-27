@@ -61,7 +61,7 @@ export default function Hero() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
-            const opacity = (1 - distance / 120) * 0.07;
+            const opacity = (1 - distance / 120) * 0.30;
             ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -72,7 +72,7 @@ export default function Hero() {
         }
 
         // Draw dot
-        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.9)`;
+        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.4)`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
