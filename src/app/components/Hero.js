@@ -123,7 +123,7 @@ export default function Hero() {
       <canvas ref={canvasRef} className="dots-canvas" />
 
       {/* Main Content */}
-      <div className="hero-content">
+      <div className="hero-content mt-32 md:mt-40">
         {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
