@@ -135,7 +135,7 @@ export default function Hero() {
           lineIndex = (lineIndex + 1) % lines.length;
         }
       }
-    }, isDeleting ? 30 : 50);
+    }, isDeleting ? 30 : 70);
 
     return () => clearInterval(timer);
   }, []);
