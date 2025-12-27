@@ -1,12 +1,13 @@
 'use client';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ChevronDown, Code, Coffee } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../styles/Hero.css';
 
 export default function Hero() {
   const canvasRef = useRef(null);
   const dotsRef = useRef([]);
+  const [typedText, setTypedText] = useState('');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -92,6 +93,23 @@ export default function Hero() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Typing effect
+  useEffect(() => {
+    const text = "Hi, I'm Rhythm";
+    let index = 0;
+    
+    const timer = setInterval(() => {
+      if (index <= text.length) {
+        setTypedText(text.slice(0, index));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -131,7 +149,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.8 }}
           className="hero-tagline"
         >
-          Full Stack Developer & Creative Problem Solver
+          {typedText}<span className="cursor-blink">|</span>
         </motion.p>
 
         {/* Description */}
@@ -141,9 +159,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1.0 }}
           className="hero-description"
         >
-          Crafting digital experiences with passion, precision, and innovation.
-          <br />
-          Turning ideas into reality, one line of code at a time.
+          Debugging: finding where I lost my rhythm.
         </motion.p>
 
         {/* Action Buttons */}
