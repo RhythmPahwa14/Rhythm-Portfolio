@@ -96,35 +96,37 @@ export default function Hero() {
   // Typing effect
   useEffect(() => {
     const lines = [
-      "Hi, I'm Rhythm",
+      "Hi, I'm Rhythm.",
       "I'm a Full Stack Developer."
     ];
     
     let lineIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let currentText = '';
+    let isPaused = false;
     
     const timer = setInterval(() => {
+      if (isPaused) return;
+      
       const currentLine = lines[lineIndex];
       
       if (!isDeleting) {
         // Typing
         if (charIndex < currentLine.length) {
-          currentText = currentLine.slice(0, charIndex + 1);
-          setTypedText(currentText);
+          setTypedText(currentLine.slice(0, charIndex + 1));
           charIndex++;
         } else {
-          // Finished typing, wait then start deleting
+          // Finished typing, pause then start deleting
+          isPaused = true;
           setTimeout(() => {
+            isPaused = false;
             isDeleting = true;
           }, 1500);
         }
       } else {
         // Deleting
         if (charIndex > 0) {
-          currentText = currentLine.slice(0, charIndex - 1);
-          setTypedText(currentText);
+          setTypedText(currentLine.slice(0, charIndex - 1));
           charIndex--;
         } else {
           // Finished deleting, move to next line
