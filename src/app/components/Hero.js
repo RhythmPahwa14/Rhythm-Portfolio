@@ -1,9 +1,96 @@
 'use client';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ChevronDown, Code, Coffee } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import '../styles/Hero.css';
 
 export default function Hero() {
+  const canvasRef = useRef(null);
+  const dotsRef = useRef([]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Create dots
+    const numDots = 50;
+    const dots = [];
+    const colors = [
+      { r: 66, g: 153, b: 225 },   // blue
+      { r: 46, g: 204, b: 113 },   // green
+      { r: 231, g: 76, b: 60 },    // red
+      { r: 241, g: 196, b: 15 },   // yellow
+    ];
+
+    for (let i = 0; i < numDots; i++) {
+      const color = colors[i % colors.length];
+      dots.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 2.5,
+        vy: (Math.random() - 0.5) * 2.5,
+        color: color,
+        radius: Math.random() * 2 + 2
+      });
+    }
+
+    dotsRef.current = dots;
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw dots
+      dots.forEach((dot, i) => {
+        // Move dots
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+
+        // Bounce off edges
+        if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
+        if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
+
+        // Draw lines to nearby dots (only check forward to avoid duplicates)
+        for (let j = i + 1; j < dots.length; j++) {
+          const otherDot = dots[j];
+          const dx = dot.x - otherDot.x;
+          const dy = dot.y - otherDot.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 120) {
+            const opacity = (1 - distance / 120) * 0.04;
+            ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(dot.x, dot.y);
+            ctx.lineTo(otherDot.x, otherDot.y);
+            ctx.stroke();
+          }
+        }
+
+        // Draw dot
+        ctx.fillStyle = `rgb(${dot.color.r}, ${dot.color.g}, ${dot.color.b})`;
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -31,36 +118,8 @@ export default function Hero() {
 
   return (
     <section className="hero" id="hero">
-      {/* Animated Boxes Background */}
-      <div className="boxes-background">
-        <div className="boxes-container">
-          {[...Array(50)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="floating-box"
-              initial={{
-                opacity: 0,
-                scale: 0,
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-              }}
-              animate={{
-                opacity: [0, 1, 0],
-                scale: [0, 1, 0],
-                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
-                rotate: [0, 180, 360],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                ease: "linear",
-                delay: Math.random() * 5,
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Canvas for Animated Dots with Lines */}
+      <canvas ref={canvasRef} className="dots-canvas" />
 
       {/* Main Content */}
       <div className="hero-content">
@@ -174,48 +233,6 @@ export default function Hero() {
           </motion.div>
           <span className="scroll-text">Scroll to explore</span>
         </motion.div>
-      </div>
-
-      {/* Floating Elements */}
-      <div className="floating-elements">
-        <motion.div
-          className="floating-element element-1"
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="floating-element element-2"
-          animate={{
-            y: [0, 15, 0],
-            rotate: [360, 180, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
-        <motion.div
-          className="floating-element element-3"
-          animate={{
-            y: [0, -25, 0],
-            rotate: [0, -180, -360],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
       </div>
     </section>
   );
