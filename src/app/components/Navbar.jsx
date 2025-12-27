@@ -20,7 +20,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-5 left-0 right-0 z-50 px-6">
+    <nav className="fixed top-12 left-0 right-0 z-50 px-6">
       {/* constrains width and centers horizontally */}
       <div className="max-w-6xl mx-auto">
         {/* symmetric grid: 1fr center auto 1fr keeps center always centered */}
@@ -28,7 +28,7 @@ const Navbar = () => {
           {/* Left: Logo / Name */}
           <motion.a
             href="#home"
-            className="justify-self-start text-white font-semibold text-lg tracking-wide font-serif italic"
+            className="hidden xl:block justify-self-start text-white font-semibold text-lg tracking-wide font-serif italic"
             initial={{ opacity: 0, x: -12 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.35 }}
