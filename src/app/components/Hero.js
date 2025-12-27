@@ -97,10 +97,7 @@ export default function Hero() {
   useEffect(() => {
     const lines = [
       "Hi, I'm Rhythm",
-      "I'm a Full Stack Developer.",
-      "I'm an AI/ML enthusiast training models to perform better than me.",
-      "I love CI/CD pipelines they continuously integrate and continuously disappoint.",
-      "I'm diving deep into System Design"
+      "I'm a Full Stack Developer."
     ];
     
     let lineIndex = 0;
@@ -135,7 +132,7 @@ export default function Hero() {
           lineIndex = (lineIndex + 1) % lines.length;
         }
       }
-    }, isDeleting ? 30 : 50);
+    }, isDeleting ? 50 : 100);
 
     return () => clearInterval(timer);
   }, []);
@@ -150,12 +147,12 @@ export default function Hero() {
   const socialLinks = [
     {
       icon: Github,
-      url: 'https://github.com/SandeepVashishtha',
+      url: 'https://github.com/RhythmPahwa14',
       label: 'GitHub'
     },
     {
       icon: Linkedin,
-      url: 'https://linkedin.com/in/sandeepvashishtha',
+      url: 'linkedin.com/in/pahwa-rhythm/',
       label: 'LinkedIn'
     },
     {
