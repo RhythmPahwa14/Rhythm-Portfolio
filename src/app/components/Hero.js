@@ -100,7 +100,7 @@ export default function Hero() {
       "I'm a Full Stack Developer.",
       "I'm an AI/ML enthusiast training models to perform better than me.",
       "I love CI/CD pipelines they continuously integrate and continuously disappoint.",
-      "I'm learning System Design"
+      "I'm diving deep into System Design"
     ];
     
     let lineIndex = 0;
@@ -121,7 +121,7 @@ export default function Hero() {
           // Finished typing, wait then start deleting
           setTimeout(() => {
             isDeleting = true;
-          }, 2000);
+          }, 1500);
         }
       } else {
         // Deleting
@@ -135,7 +135,7 @@ export default function Hero() {
           lineIndex = (lineIndex + 1) % lines.length;
         }
       }
-    }, isDeleting ? 50 : 100);
+    }, isDeleting ? 30 : 50);
 
     return () => clearInterval(timer);
   }, []);
