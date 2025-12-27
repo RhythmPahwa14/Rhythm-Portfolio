@@ -95,13 +95,30 @@ export default function Hero() {
 
   // Typing effect
   useEffect(() => {
-    const text = "Hi, I'm Rhythm";
-    let index = 0;
+    const lines = [
+      "Hi, I'm Rhythm",
+      "I'm a Full Stack Developer.",
+      "I'm an AI/ML enthusiast training models to perform better than me.",
+      "I love CI/CD pipelines they continuously integrate and continuously disappoint.",
+      "I'm learning System Design"
+    ];
+    
+    let lineIndex = 0;
+    let charIndex = 0;
+    let currentText = '';
     
     const timer = setInterval(() => {
-      if (index <= text.length) {
-        setTypedText(text.slice(0, index));
-        index++;
+      if (lineIndex < lines.length) {
+        if (charIndex <= lines[lineIndex].length) {
+          currentText = lines.slice(0, lineIndex).join('\n') + 
+                       (lineIndex > 0 ? '\n' : '') + 
+                       lines[lineIndex].slice(0, charIndex);
+          setTypedText(currentText);
+          charIndex++;
+        } else {
+          lineIndex++;
+          charIndex = 0;
+        }
       } else {
         clearInterval(timer);
       }
@@ -148,6 +165,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
           className="hero-tagline"
+          style={{ whiteSpace: 'pre-line' }}
         >
           {typedText}<span className="cursor-blink">|</span>
         </motion.p>
