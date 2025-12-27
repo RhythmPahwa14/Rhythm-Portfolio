@@ -23,7 +23,7 @@ export default function AnimatedBackground() {
     setCanvasSize();
 
     // Create dots
-    const numDots = 50;
+    const numDots = 35;
     const dots = [];
     const colors = [
       { r: 96, g: 165, b: 250 },   // lighter blue
@@ -67,7 +67,7 @@ export default function AnimatedBackground() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
-            const opacity = (1 - distance / 120) * 0.07;
+            const opacity = (1 - distance / 120) * 0.15;
             ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
