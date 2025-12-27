@@ -135,7 +135,7 @@ const ContactPage = () => {
   ];
 
   return (
-    <section id="contact" className="min-h-screen py-20 bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900 relative overflow-hidden">
+    <section id="contact" className="min-h-screen py-20 bg-[#111827] relative overflow-hidden">
       <AnimatedBackground />
 
       <div className="relative max-w-7xl mx-auto px-6">

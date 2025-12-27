@@ -20,10 +20,10 @@ export default function Hero() {
     const numDots = 50;
     const dots = [];
     const colors = [
-      { r: 66, g: 153, b: 225 },   // blue
-      { r: 46, g: 204, b: 113 },   // green
-      { r: 231, g: 76, b: 60 },    // red
-      { r: 241, g: 196, b: 15 },   // yellow
+      { r: 72, g: 133, b: 237 },   // blue #4885ed
+      { r: 219, g: 50, b: 54 },    // red #db3236
+      { r: 244, g: 194, b: 13 },   // yellow #f4c20d
+      { r: 60, g: 186, b: 84 },    // green #3cba54
     ];
 
     for (let i = 0; i < numDots; i++) {

@@ -134,7 +134,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="relative py-20 bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900 transition-colors duration-300 overflow-hidden">
+    <section id="projects" className="relative py-20 bg-[#111827] transition-colors duration-300 overflow-hidden">
       <AnimatedBackground />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
