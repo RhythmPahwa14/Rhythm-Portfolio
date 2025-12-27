@@ -105,24 +105,37 @@ export default function Hero() {
     
     let lineIndex = 0;
     let charIndex = 0;
+    let isDeleting = false;
     let currentText = '';
     
     const timer = setInterval(() => {
-      if (lineIndex < lines.length) {
-        if (charIndex <= lines[lineIndex].length) {
-          currentText = lines.slice(0, lineIndex).join('\n') + 
-                       (lineIndex > 0 ? '\n' : '') + 
-                       lines[lineIndex].slice(0, charIndex);
+      const currentLine = lines[lineIndex];
+      
+      if (!isDeleting) {
+        // Typing
+        if (charIndex < currentLine.length) {
+          currentText = currentLine.slice(0, charIndex + 1);
           setTypedText(currentText);
           charIndex++;
         } else {
-          lineIndex++;
-          charIndex = 0;
+          // Finished typing, wait then start deleting
+          setTimeout(() => {
+            isDeleting = true;
+          }, 2000);
         }
       } else {
-        clearInterval(timer);
+        // Deleting
+        if (charIndex > 0) {
+          currentText = currentLine.slice(0, charIndex - 1);
+          setTypedText(currentText);
+          charIndex--;
+        } else {
+          // Finished deleting, move to next line
+          isDeleting = false;
+          lineIndex = (lineIndex + 1) % lines.length;
+        }
       }
-    }, 100);
+    }, isDeleting ? 50 : 100);
 
     return () => clearInterval(timer);
   }, []);
