@@ -17,7 +17,7 @@ export default function Hero() {
     canvas.height = window.innerHeight;
 
     // Create dots
-    const numDots = 50;
+    const numDots = 30;
     const dots = [];
     const colors = [
       { r: 96, g: 165, b: 250 },   // lighter blue
