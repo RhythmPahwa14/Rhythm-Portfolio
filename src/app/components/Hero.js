@@ -34,7 +34,7 @@ export default function Hero() {
         vx: (Math.random() - 0.5) * 5,
         vy: (Math.random() - 0.5) * 5,
         color: color,
-        radius: Math.random() * 3 + 2
+        radius: Math.random() * 3 + 3
       });
     }
 
@@ -72,7 +72,7 @@ export default function Hero() {
         }
 
         // Draw dot
-        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.4)`;
+        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.6)`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
