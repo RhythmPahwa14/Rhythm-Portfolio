@@ -170,7 +170,7 @@ export default function Hero() {
       <canvas ref={canvasRef} className="dots-canvas" />
 
       {/* Main Content */}
-      <div className="hero-content mt-32 md:mt-40">
+      <div className="hero-content mt-20 md:mt-28">
         {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -190,6 +190,8 @@ export default function Hero() {
           className="hero-description"
         >
           Debugging: finding where I lost my rhythm.
+          <br />
+          <strong>Amazon ML Summer School'25 - Participant</strong>
         </motion.p>
 
         {/* Action Buttons */}
