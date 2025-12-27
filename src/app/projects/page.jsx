@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import AnimatedBackground from '../components/AnimatedBackground';
 
 const Projects = () => {
   // Projects data
@@ -133,8 +134,9 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="projects" className="relative py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 transition-colors duration-300 overflow-hidden">
+      <AnimatedBackground />
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

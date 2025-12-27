@@ -17,7 +17,7 @@ export default function Hero() {
     canvas.height = window.innerHeight;
 
     // Create dots
-    const numDots = 60;
+    const numDots = 50;
     const dots = [];
     const colors = [
       { r: 66, g: 153, b: 225 },   // blue
@@ -31,8 +31,8 @@ export default function Hero() {
       dots.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 2.5,
-        vy: (Math.random() - 0.5) * 2.5,
+        vx: (Math.random() - 0.5) * 3.5,
+        vy: (Math.random() - 0.5) * 3.5,
         color: color,
         radius: Math.random() * 3 + 2
       });
