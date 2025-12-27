@@ -91,6 +91,7 @@ export default function Hero() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -123,24 +124,6 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="hero-content">
-        {/* Name with Gradient Effect */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="hero-name-container"
-        >
-          <h1 className="hero-name">
-            <span className="gradient-text">Rhythm Pahwa</span>
-          </h1>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="name-underline"
-          />
-        </motion.div>
-
         {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
