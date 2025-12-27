@@ -191,7 +191,15 @@ export default function Hero() {
         >
           Debugging: finding where I lost my rhythm.
           <br />
-          <strong>Amazon ML Summer School'25 - Participant</strong>
+          <strong style={{ color: 'rgba(255, 255, 255, 1)' }}>Amazon ML Summer School'25 - Participant</strong>
+          <br />
+          <span style={{ fontSize: '0.9em' }}>
+            ~ training AI/ML models that perform better than me.
+            <br />
+            ~ working with CI/CD pipelines to streamline deployment workflows.
+            <br />
+            ~ diving deep into system design for scalable, reliable applications.
+          </span>
         </motion.p>
 
         {/* Action Buttons */}
