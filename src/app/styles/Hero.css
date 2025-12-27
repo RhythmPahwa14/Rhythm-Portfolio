@@ -90,7 +90,7 @@
 /* Tagline */
 .hero-tagline {
   font-family: var(--font-montserrat), sans-serif;
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 500;
   margin: 0 0 1.5rem 0;
   color: rgba(255, 255, 255, 0.9);

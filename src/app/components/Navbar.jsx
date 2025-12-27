@@ -20,7 +20,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-12 left-0 right-0 z-50 px-6">
+    <nav className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-center items-center">
           {/* Center: pill-shaped nav */}
@@ -28,7 +28,7 @@ const Navbar = () => {
             initial={{ y: -24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.55, ease: 'easeOut' }}
-            className={`backdrop-blur-2xl rounded-full px-8 py-3 flex items-center gap-6 transition-all duration-300 ${
+            className={`backdrop-blur-2xl rounded-full px-4 md:px-8 py-2 md:py-3 flex items-center gap-2 md:gap-6 transition-all duration-300 ${
               isScrolled
                 ? 'bg-black/80 border border-blue-500/20 shadow-2xl'
                 : 'bg-white/5 border border-white/10 shadow-lg'
@@ -38,7 +38,7 @@ const Navbar = () => {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-white/90 hover:text-blue-400 font-medium text-sm px-3 py-1 rounded-2xl transition-all duration-200 hover:bg-blue-500/10"
+                className="text-white/90 hover:text-blue-400 font-medium text-xs md:text-sm px-2 md:px-3 py-1 rounded-2xl transition-all duration-200 hover:bg-blue-500/10 whitespace-nowrap"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: -10 }}
