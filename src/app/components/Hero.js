@@ -20,10 +20,10 @@ export default function Hero() {
     const numDots = 50;
     const dots = [];
     const colors = [
-      { r: 72, g: 133, b: 237 },   // blue #4885ed
-      { r: 219, g: 50, b: 54 },    // red #db3236
-      { r: 244, g: 194, b: 13 },   // yellow #f4c20d
-      { r: 60, g: 186, b: 84 },    // green #3cba54
+      { r: 96, g: 165, b: 250 },   // lighter blue
+      { r: 248, g: 113, b: 113 },  // lighter red
+      { r: 250, g: 204, b: 21 },   // lighter yellow
+      { r: 74, g: 222, b: 128 },   // lighter green
     ];
 
     for (let i = 0; i < numDots; i++) {
@@ -71,11 +71,14 @@ export default function Hero() {
           }
         }
 
-        // Draw dot
-        ctx.fillStyle = `rgb(${dot.color.r}, ${dot.color.g}, ${dot.color.b})`;
+        // Draw dot with shadow/glow
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.8)`;
+        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.9)`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
+        ctx.shadowBlur = 0;
       });
 
       requestAnimationFrame(animate);
