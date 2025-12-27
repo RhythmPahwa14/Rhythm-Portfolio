@@ -23,7 +23,7 @@ export default function AnimatedBackground() {
     setCanvasSize();
 
     // Create dots
-    const numDots = 35;
+    const numDots = 20;
     const dots = [];
     const colors = [
       { r: 96, g: 165, b: 250 },   // lighter blue
@@ -118,3 +118,4 @@ export default function AnimatedBackground() {
     />
   );
 }
+
