@@ -106,6 +106,10 @@
   letter-spacing: 1px;
 }
 
+.light .hero-tagline {
+  color: rgba(17, 24, 39, 1);
+}
+
 /* Description */
 .hero-description {
   font-family: var(--font-montserrat), sans-serif;
@@ -113,11 +117,23 @@
   font-weight: 300;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 3rem 0;
+  margin: 0 0 2rem 0;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+}
+
+.light .hero-description {
+  color: rgba(17, 24, 39, 0.9);
+}
+
+.light .hero-description strong {
+  color: rgba(17, 24, 39, 1) !important;
+}
+
+.light .hero-description span {
+  color: rgba(17, 24, 39, 0.85);
 }
 
 /* Action Buttons */
@@ -126,7 +142,7 @@
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .cta-button {
@@ -165,10 +181,22 @@
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
 }
 
+.light .cta-button.secondary {
+  background: rgba(17, 24, 39, 0.08);
+  color: #111827;
+  border: 1px solid rgba(17, 24, 39, 0.15);
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.1);
+}
+
 .cta-button.secondary:hover {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
+}
+
+.light .cta-button.secondary:hover {
+  background: rgba(17, 24, 39, 0.12);
+  box-shadow: 0 15px 40px rgba(17, 24, 39, 0.15);
 }
 
 /* Social Links */
@@ -195,10 +223,21 @@
   backdrop-filter: blur(10px);
 }
 
+.light .social-link {
+  background: rgba(17, 24, 39, 0.08);
+  border: 1px solid rgba(17, 24, 39, 0.15);
+  color: #111827;
+}
+
 .social-link:hover {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
   transform: translateY(-3px);
+}
+
+.light .social-link:hover {
+  background: rgba(17, 24, 39, 0.12);
+  box-shadow: 0 10px 25px rgba(17, 24, 39, 0.15);
 }
 
 /* Scroll Indicator */
@@ -212,8 +251,16 @@
   transition: all 0.3s ease;
 }
 
+.light .scroll-indicator {
+  color: rgba(17, 24, 39, 0.6);
+}
+
 .scroll-indicator:hover {
   color: rgba(255, 255, 255, 0.9);
+}
+
+.light .scroll-indicator:hover {
+  color: rgba(17, 24, 39, 0.9);
 }
 
 .scroll-arrow {
@@ -227,6 +274,11 @@
   background: rgba(255, 255, 255, 0.05);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+}
+
+.light .scroll-arrow {
+  border: 1px solid rgba(17, 24, 39, 0.3);
+  background: rgba(17, 24, 39, 0.05);
 }
 
 .scroll-text {

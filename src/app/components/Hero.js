@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ChevronDown, Code, Coffee } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import ScrambleRevealText from './ScrambleRevealText';
+import FadeInText from './FadeInText';
 import '../styles/Hero.css';
 
 export default function Hero() {
@@ -28,7 +28,7 @@ export default function Hero() {
     setCanvasSize();
 
     // Create dots
-    const numDots = 20;
+    const numDots = 27;
     const dots = [];
     const colors = [
       { r: 96, g: 165, b: 250 },   // lighter blue
@@ -89,7 +89,7 @@ export default function Hero() {
         }
 
         // Draw dot - ensure perfect circle
-        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.4)`;
+        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.6)`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
@@ -224,24 +224,28 @@ export default function Hero() {
             " Debugging: finding where I lost my rhythm "
           </span>
           <br /><br />
-          <strong style={{ color: 'rgba(255, 255, 255, 1)', fontSize: '1.2em' }}>
-            Amazon ML Summer School'25 - Participant
+          <strong style={{ color: 'rgba(255, 255, 255, 1)', fontSize: '1.05em', fontWeight: 700 }}>
+            Amazon ML Summer School 2025 - Participant
           </strong>
           <br />
-          <span style={{ display: 'block', marginTop: '0.5rem', lineHeight: '1.8', fontSize: '0.95em' }}>
-            <ScrambleRevealText 
+          <strong style={{ color: 'rgba(255, 255, 255, 1)', fontSize: '1.05em', fontWeight: 700 }}>
+            GirlScript Summer of Code 2025 - Top 10 Project Admin
+          </strong>
+          <br />
+          <span style={{ fontFamily: 'monospace', fontSize: '0.95em', display: 'block', marginTop: '1.2rem', lineHeight: '1.8' }}>
+            <FadeInText 
               text="~ training AI/ML models that perform better than me."
               delay={1200}
             />
             <br />
-            <ScrambleRevealText 
+            <FadeInText 
               text="~ building full-stack applications that turn ideas into experiences."
-              delay={1500}
+              delay={1400}
             />
             <br />
-            <ScrambleRevealText 
+            <FadeInText 
               text="~ exploring cloud fundamentals and scalable engineering concepts."
-              delay={1800}
+              delay={1600}
             />
           </span>
         </motion.p>

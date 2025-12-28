@@ -33,11 +33,11 @@ const Navbar = () => {
             transition={{ duration: 0.55, ease: 'easeOut' }}
             className={`backdrop-blur-2xl rounded-full px-4 md:px-6 py-2 md:py-3 transition-all duration-300 ${
               isScrolled
-                ? 'bg-black/80 border border-blue-500/20 shadow-2xl'
-                : 'bg-white/5 border border-white/10 shadow-lg'
+                ? isDark ? 'bg-black/80 border border-blue-500/20 shadow-2xl' : 'bg-white/80 border border-blue-500/20 shadow-2xl'
+                : isDark ? 'bg-white/5 border border-white/10 shadow-lg' : 'bg-gray-800/10 border border-gray-800/10 shadow-lg'
             }`}
           >
-            <span className="text-white font-bold text-lg md:text-xl">Rhythm</span>
+            <span className={`font-bold text-lg md:text-xl ${isDark ? 'text-white' : 'text-gray-900'}`}>Rhythm</span>
           </motion.div>
 
           {/* Center: pill-shaped nav */}
@@ -47,15 +47,17 @@ const Navbar = () => {
             transition={{ duration: 0.55, ease: 'easeOut' }}
             className={`backdrop-blur-2xl rounded-full px-4 md:px-8 py-2 md:py-3 flex items-center gap-2 md:gap-6 transition-all duration-300 ${
               isScrolled
-                ? 'bg-black/80 border border-blue-500/20 shadow-2xl'
-                : 'bg-white/5 border border-white/10 shadow-lg'
+                ? isDark ? 'bg-black/80 border border-blue-500/20 shadow-2xl' : 'bg-white/80 border border-blue-500/20 shadow-2xl'
+                : isDark ? 'bg-white/5 border border-white/10 shadow-lg' : 'bg-gray-800/10 border border-gray-800/10 shadow-lg'
             }`}
           >
             {navItems.map((item, i) => (
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-white/90 hover:text-blue-400 font-medium text-xs md:text-sm px-2 md:px-3 py-1 rounded-2xl transition-all duration-200 hover:bg-blue-500/10 whitespace-nowrap"
+                className={`font-medium text-xs md:text-sm px-2 md:px-3 py-1 rounded-2xl transition-all duration-200 hover:bg-blue-500/10 whitespace-nowrap ${
+                  isDark ? 'text-white/90 hover:text-blue-400' : 'text-gray-900/90 hover:text-blue-600'
+                }`}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: -10 }}
@@ -74,8 +76,8 @@ const Navbar = () => {
             transition={{ duration: 0.55, ease: 'easeOut' }}
             className={`backdrop-blur-2xl rounded-full px-3 md:px-4 py-2 md:py-3 transition-all duration-300 cursor-pointer ${
               isScrolled
-                ? 'bg-black/80 border border-blue-500/20 shadow-2xl'
-                : 'bg-white/5 border border-white/10 shadow-lg'
+                ? isDark ? 'bg-black/80 border border-blue-500/20 shadow-2xl' : 'bg-white/80 border border-blue-500/20 shadow-2xl'
+                : isDark ? 'bg-white/5 border border-white/10 shadow-lg' : 'bg-gray-800/10 border border-gray-800/10 shadow-lg'
             }`}
             onClick={toggleTheme}
             whileHover={{ scale: 1.05 }}
