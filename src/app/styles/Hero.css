@@ -8,8 +8,14 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #111827;
-  color: white;
+  background: var(--bg-primary, #111827);
+  color: var(--text-primary, white);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.light .hero {
+  background: #f3f4f6;
+  color: #111827;
 }
 
 /* Canvas for Animated Dots with Lines */
@@ -20,6 +26,9 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  display: block;
+  /* Prevent distortion by removing !important and letting JS handle sizing */
+  object-fit: contain;
 }
 
 /* Hero Content */

@@ -1,5 +1,6 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -17,10 +18,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} antialiased font-sans`}
+        className={`${montserrat.variable} antialiased font-sans transition-colors duration-300`}
         style={{ fontFamily: 'var(--font-montserrat)' }}
       >
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

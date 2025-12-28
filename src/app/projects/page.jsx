@@ -173,7 +173,7 @@ const Projects = () => {
             Want to see more of my work?
           </p>
           <a
-            href="https://github.com/SandeepVashishtha"
+            href="https://github.com/RhythmPahwa14"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-300 font-medium"

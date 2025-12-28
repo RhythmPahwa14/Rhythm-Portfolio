@@ -34,11 +34,13 @@ export default function AnimatedBackground() {
 
     for (let i = 0; i < numDots; i++) {
       const color = colors[i % colors.length];
+      const speed = 2;
+      const angle = Math.random() * Math.PI * 2;
       dots.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 5,
-        vy: (Math.random() - 0.5) * 5,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
         color: color,
         radius: Math.random() * 3 + 3
       });
@@ -67,7 +69,7 @@ export default function AnimatedBackground() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
-            const opacity = (1 - distance / 120) * 0.30;
+            const opacity = (1 - distance / 120) * 0.40;
             ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.beginPath();

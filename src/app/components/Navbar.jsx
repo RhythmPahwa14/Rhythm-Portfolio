@@ -1,9 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 50);
@@ -21,8 +24,22 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex justify-center items-center">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-center">
+          {/* Left: Name */}
+          <motion.div
+            initial={{ y: -24, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            className={`backdrop-blur-2xl rounded-full px-4 md:px-6 py-2 md:py-3 transition-all duration-300 ${
+              isScrolled
+                ? 'bg-black/80 border border-blue-500/20 shadow-2xl'
+                : 'bg-white/5 border border-white/10 shadow-lg'
+            }`}
+          >
+            <span className="text-white font-bold text-lg md:text-xl">Rhythm</span>
+          </motion.div>
+
           {/* Center: pill-shaped nav */}
           <motion.div
             initial={{ y: -24, opacity: 0 }}
@@ -48,6 +65,27 @@ const Navbar = () => {
                 {item.name}
               </motion.a>
             ))}
+          </motion.div>
+
+          {/* Right: Theme Toggle */}
+          <motion.div
+            initial={{ y: -24, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            className={`backdrop-blur-2xl rounded-full px-3 md:px-4 py-2 md:py-3 transition-all duration-300 cursor-pointer ${
+              isScrolled
+                ? 'bg-black/80 border border-blue-500/20 shadow-2xl'
+                : 'bg-white/5 border border-white/10 shadow-lg'
+            }`}
+            onClick={toggleTheme}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isDark ? (
+              <Sun className="w-5 h-5 text-yellow-400" />
+            ) : (
+              <Moon className="w-5 h-5 text-blue-400" />
+            )}
           </motion.div>
         </div>
       </div>

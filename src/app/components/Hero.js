@@ -14,11 +14,28 @@ export default function Hero() {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    
+    // Set canvas size properly to prevent distortion
+    const setCanvasSize = () => {
+      const parent = canvas.parentElement;
+      const width = parent.clientWidth;
+      const height = parent.clientHeight;
+      
+      // Account for device pixel ratio for crisp rendering on high-DPI displays
+      const dpr = window.devicePixelRatio || 1;
+      
+      // Set internal canvas dimensions with DPI scaling
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      
+      // Scale context to match DPI
+      ctx.scale(dpr, dpr);
+    };
+    
+    setCanvasSize();
 
     // Create dots
-    const numDots = 30;
+    const numDots = 20;
     const dots = [];
     const colors = [
       { r: 96, g: 165, b: 250 },   // lighter blue
@@ -27,22 +44,32 @@ export default function Hero() {
       { r: 74, g: 222, b: 128 },   // lighter green
     ];
 
+    // Use display dimensions for dot positions
+    const displayWidth = canvas.parentElement.clientWidth;
+    const displayHeight = canvas.parentElement.clientHeight;
+    
     for (let i = 0; i < numDots; i++) {
       const color = colors[i % colors.length];
+      const speed = 2;
+      const angle = Math.random() * Math.PI * 2;
       dots.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 5,
-        vy: (Math.random() - 0.5) * 5,
+        x: Math.random() * displayWidth,
+        y: Math.random() * displayHeight,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
         color: color,
-        radius: Math.random() * 3 + 3
+        radius: Math.random() * 2 + 3
       });
     }
 
     dotsRef.current = dots;
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const displayWidth = canvas.parentElement.clientWidth;
+      const displayHeight = canvas.parentElement.clientHeight;
+      
+      ctx.clearRect(0, 0, displayWidth, displayHeight);
+      ctx.save();
 
       // Update and draw dots
       dots.forEach((dot, i) => {
@@ -50,9 +77,9 @@ export default function Hero() {
         dot.x += dot.vx;
         dot.y += dot.vy;
 
-        // Bounce off edges
-        if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
-        if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
+        // Bounce off edges (use display dimensions)
+        if (dot.x < 0 || dot.x > displayWidth) dot.vx *= -1;
+        if (dot.y < 0 || dot.y > displayHeight) dot.vy *= -1;
 
         // Draw lines to nearby dots (only check forward to avoid duplicates)
         for (let j = i + 1; j < dots.length; j++) {
@@ -72,21 +99,38 @@ export default function Hero() {
           }
         }
 
-        // Draw dot
-        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.4)`;
+        // Draw dot - ensure perfect circle
+        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.6)`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
+        ctx.closePath();
       });
 
+      ctx.restore();
       requestAnimationFrame(animate);
     };
 
     animate();
 
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const parent = canvas.parentElement;
+      const width = parent.clientWidth;
+      const height = parent.clientHeight;
+      const dpr = window.devicePixelRatio || 1;
+      
+      // Only set internal dimensions, not CSS style
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      
+      // Reset scale after canvas resize
+      ctx.scale(dpr, dpr);
+      
+      // Reinitialize dots positions to fit new canvas size (use display size, not internal)
+      dots.forEach(dot => {
+        dot.x = Math.min(dot.x, width);
+        dot.y = Math.min(dot.y, height);
+      });
     };
 
     window.addEventListener('resize', handleResize);
@@ -154,7 +198,7 @@ export default function Hero() {
     },
     {
       icon: Linkedin,
-      url: 'linkedin.com/in/pahwa-rhythm/',
+      url: 'https://linkedin.com/in/pahwa-rhythm/',
       label: 'LinkedIn'
     },
     {
@@ -165,7 +209,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="hero" id="hero">
+    <section className="hero" id="home">
       {/* Canvas for Animated Dots with Lines */}
       <canvas ref={canvasRef} className="dots-canvas" />
 

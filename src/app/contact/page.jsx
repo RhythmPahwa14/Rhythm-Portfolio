@@ -123,13 +123,13 @@ const ContactPage = () => {
     {
       icon: Github,
       name: 'GitHub',
-      url: 'https://github.com/SandeepVashishtha',
+      url: 'https://github.com/RhythmPahwa14',
       color: 'hover:text-gray-300'
     },
     {
       icon: Linkedin,
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/sandeepvashishtha',
+      url: 'https://linkedin.com/in/pahwa-rhythm/',
       color: 'hover:text-blue-400'
     }
   ];
@@ -458,11 +458,6 @@ const ContactPage = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-1/4 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-      <div className="absolute bottom-32 right-1/3 w-1 h-1 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
     </section>
   );
 };
