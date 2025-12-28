@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ChevronDown, Code, Coffee } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import ScrambleRevealText from './ScrambleRevealText';
 import '../styles/Hero.css';
 
 export default function Hero() {
@@ -18,18 +19,10 @@ export default function Hero() {
     // Set canvas size properly to prevent distortion
     const setCanvasSize = () => {
       const parent = canvas.parentElement;
-      const width = parent.clientWidth;
-      const height = parent.clientHeight;
-      
-      // Account for device pixel ratio for crisp rendering on high-DPI displays
-      const dpr = window.devicePixelRatio || 1;
-      
-      // Set internal canvas dimensions with DPI scaling
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      
-      // Scale context to match DPI
-      ctx.scale(dpr, dpr);
+      if (parent) {
+        canvas.width = parent.clientWidth;
+        canvas.height = parent.clientHeight;
+      }
     };
     
     setCanvasSize();
@@ -45,8 +38,8 @@ export default function Hero() {
     ];
 
     // Use display dimensions for dot positions
-    const displayWidth = canvas.parentElement.clientWidth;
-    const displayHeight = canvas.parentElement.clientHeight;
+    const displayWidth = canvas.width;
+    const displayHeight = canvas.height;
     
     for (let i = 0; i < numDots; i++) {
       const color = colors[i % colors.length];
@@ -65,11 +58,7 @@ export default function Hero() {
     dotsRef.current = dots;
 
     const animate = () => {
-      const displayWidth = canvas.parentElement.clientWidth;
-      const displayHeight = canvas.parentElement.clientHeight;
-      
-      ctx.clearRect(0, 0, displayWidth, displayHeight);
-      ctx.save();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Update and draw dots
       dots.forEach((dot, i) => {
@@ -77,9 +66,9 @@ export default function Hero() {
         dot.x += dot.vx;
         dot.y += dot.vy;
 
-        // Bounce off edges (use display dimensions)
-        if (dot.x < 0 || dot.x > displayWidth) dot.vx *= -1;
-        if (dot.y < 0 || dot.y > displayHeight) dot.vy *= -1;
+        // Bounce off edges
+        if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
+        if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
 
         // Draw lines to nearby dots (only check forward to avoid duplicates)
         for (let j = i + 1; j < dots.length; j++) {
@@ -107,30 +96,28 @@ export default function Hero() {
         ctx.closePath();
       });
 
-      ctx.restore();
       requestAnimationFrame(animate);
     };
 
     animate();
 
     const handleResize = () => {
-      const parent = canvas.parentElement;
-      const width = parent.clientWidth;
-      const height = parent.clientHeight;
-      const dpr = window.devicePixelRatio || 1;
-      
-      // Only set internal dimensions, not CSS style
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      
-      // Reset scale after canvas resize
-      ctx.scale(dpr, dpr);
-      
-      // Reinitialize dots positions to fit new canvas size (use display size, not internal)
-      dots.forEach(dot => {
-        dot.x = Math.min(dot.x, width);
-        dot.y = Math.min(dot.y, height);
-      });
+      setCanvasSize();
+      // Reinitialize dots with new canvas size
+      dots.length = 0;
+      for (let i = 0; i < numDots; i++) {
+        const color = colors[i % colors.length];
+        const speed = 2;
+        const angle = Math.random() * Math.PI * 2;
+        dots.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          color: color,
+          radius: Math.random() * 2 + 3
+        });
+      }
     };
 
     window.addEventListener('resize', handleResize);
@@ -241,12 +228,21 @@ export default function Hero() {
             Amazon ML Summer School'25 - Participant
           </strong>
           <br />
-          <span style={{ fontFamily: 'monospace', fontSize: '0.95em', display: 'block', marginTop: '0.5rem', lineHeight: '1.8' }}>
-            ~ training AI/ML models that perform better than me.
+          <span style={{ display: 'block', marginTop: '0.5rem', lineHeight: '1.8', fontSize: '0.95em' }}>
+            <ScrambleRevealText 
+              text="~ training AI/ML models that perform better than me."
+              delay={1200}
+            />
             <br />
-            ~ working with CI/CD pipelines to streamline deployment workflows.
+            <ScrambleRevealText 
+              text="~ building full-stack applications that turn ideas into experiences."
+              delay={1500}
+            />
             <br />
-            ~ diving deep into system design for scalable, reliable applications.
+            <ScrambleRevealText 
+              text="~ exploring cloud fundamentals and scalable engineering concepts."
+              delay={1800}
+            />
           </span>
         </motion.p>
 
