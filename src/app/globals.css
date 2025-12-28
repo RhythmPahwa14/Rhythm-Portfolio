@@ -23,16 +23,42 @@
 }
 
 /* Global light theme text colors */
-.light .text-gray-400 {
+.light .text-gray-400:not(footer *) {
   color: #6b7280 !important;
 }
 
-.light .text-gray-300 {
+.light .text-gray-300:not(footer *) {
   color: #6b7280 !important;
 }
 
-.light .text-gray-600 {
+.light .text-gray-600:not(footer *) {
   color: #4b5563 !important;
+}
+
+/* Footer specific light theme colors */
+.light footer .text-gray-300,
+.light footer .text-gray-400,
+.light footer .text-gray-600 {
+  color: #000000 !important;
+}
+
+.light footer p,
+.light footer li,
+.light footer a:not(.bg-gradient-to-r) {
+  color: #000000 !important;
+}
+
+/* Allow hover colors in footer for both themes */
+.light footer a:hover.hover\:text-green-400 {
+  color: #4ade80 !important;
+}
+
+.light footer a:hover.hover\:text-blue-400 {
+  color: #60a5fa !important;
+}
+
+.light footer a:hover.hover\:text-red-400 {
+  color: #f87171 !important;
 }
 
 .light .text-white {
@@ -75,6 +101,10 @@
 .light section {
   background: var(--bg-primary) !important;
   color: var(--text-primary) !important;
+}
+
+.light footer {
+  background: var(--bg-primary) !important;
 }
 
 html, body {

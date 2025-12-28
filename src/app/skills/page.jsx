@@ -34,7 +34,7 @@ const Skills = () => {
     databases: {
       title: 'Databases',
       icon: Database,
-      color: 'from-green-500 to-emerald-500',
+      color: 'from-orange-500 to-red-500',
       skills: [
         { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', level: 85 },
         { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', level: 80 },
@@ -44,7 +44,7 @@ const Skills = () => {
     cloudDevOps: {
       title: 'Cloud & DevOps',
       icon: Cloud,
-      color: 'from-orange-500 to-red-500',
+      color: 'from-green-500 to-emerald-500',
       skills: [
         { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg', level: 78 },
         { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', level: 80 },
@@ -196,10 +196,10 @@ const Skills = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-5xl md:text-6xl font-bold mb-6"
           >
-            <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-400 bg-clip-text text-transparent">
               Skills & 
             </span>
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-400 bg-clip-text text-transparent">
               {" "}Technologies
             </span>
           </motion.h2>

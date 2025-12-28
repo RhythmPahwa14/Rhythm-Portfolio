@@ -164,10 +164,10 @@ const ContactPage = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-5xl md:text-6xl font-bold mb-6"
           >
-            <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
               Let's 
             </span>
-            <span className="bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
               {" "}Connect
             </span>
           </motion.h1>

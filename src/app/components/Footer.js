@@ -13,7 +13,7 @@ const Footer = () => {
       name: 'GitHub',
       icon: Github,
       url: 'https://github.com/rhythmpahwa14',
-      color: 'hover:text-gray-300'
+      color: 'hover:text-green-400'
     },
     {
       name: 'LinkedIn',
@@ -25,7 +25,7 @@ const Footer = () => {
       name: 'Email',
       icon: Mail,
       url: 'mailto:rhythmpahwa14@gmail.com',
-      color: 'hover:text-green-400'
+      color: 'hover:text-red-400'
     }
   ];
 
@@ -37,7 +37,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-[var(--bg-primary)] dark:bg-[#111827] light:bg-gray-50 text-[var(--text-primary)] overflow-hidden transition-colors duration-300">
+    <footer className="relative bg-[var(--bg-primary)] text-[var(--text-primary)] overflow-hidden transition-colors duration-300">
       <AnimatedBackground />
 
       <div className="relative max-w-7xl mx-auto px-6 py-16">
@@ -60,7 +60,7 @@ const Footer = () => {
                 Rhythm Pahwa
               </span>
             </motion.h3>
-            <p className="dark:text-gray-300 light:text-gray-700 text-lg mb-6 leading-relaxed max-w-md">
+            <p className="text-gray-300 text-lg mb-6 leading-relaxed max-w-md">
               Full-stack developer passionate about creating innovative digital experiences 
               and solving complex problems through code.
             </p>
@@ -98,13 +98,13 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-xl font-semibold mb-6 dark:text-white light:text-gray-900">Quick Links</h4>
+            <h4 className="text-xl font-semibold mb-6 text-white">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <motion.li key={link.name}>
                   <motion.a
                     href={link.href}
-                    className="dark:text-gray-300 light:text-gray-700 dark:hover:text-white light:hover:text-gray-900 transition-colors duration-300 flex items-center group"
+                    className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group"
                     whileHover={{ x: 5 }}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -126,14 +126,16 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-xl font-semibold mb-6 dark:text-white light:text-gray-900">Get In Touch</h4>
+            <h4 className="text-xl font-semibold mb-6 text-white">Get In Touch</h4>
             <div className="space-y-4">
               <motion.div 
-                className="flex items-center dark:text-gray-300 light:text-gray-700"
+                className="flex items-center text-gray-300"
                 whileHover={{ x: 5 }}
               >
                 <Mail className="w-5 h-5 mr-3 text-green-400" />
-                <span>rhythmpahwa14@gmail.com</span>
+                <a href="mailto:rhythmpahwa14@gmail.com" className="hover:text-green-400 transition-colors duration-300">
+                  rhythmpahwa14@gmail.com
+                </a>
               </motion.div>
               
               <motion.div 
@@ -167,13 +169,13 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <motion.p 
-            className="dark:text-gray-400 light:text-gray-600 mb-4 md:mb-0 flex items-center"
+            className="text-gray-400 mb-4 md:mb-0 flex items-center"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            © 2025 Rhythm Pahwa. Made with 
+            © 2025 <a href="https://github.com/rhythmpahwa14" target="_blank" rel="noopener noreferrer" className="mx-1 hover:text-blue-400 transition-colors duration-300">Rhythm Pahwa</a>. Made with 
             <motion.span
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
