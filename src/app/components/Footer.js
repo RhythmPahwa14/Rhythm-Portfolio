@@ -37,7 +37,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-[#111827] text-white overflow-hidden">
+    <footer className="relative bg-[var(--bg-primary)] dark:bg-[#111827] light:bg-gray-50 text-[var(--text-primary)] overflow-hidden transition-colors duration-300">
       <AnimatedBackground />
 
       <div className="relative max-w-7xl mx-auto px-6 py-16">
@@ -60,7 +60,7 @@ const Footer = () => {
                 Rhythm Pahwa
               </span>
             </motion.h3>
-            <p className="text-gray-300 text-lg mb-6 leading-relaxed max-w-md">
+            <p className="dark:text-gray-300 light:text-gray-700 text-lg mb-6 leading-relaxed max-w-md">
               Full-stack developer passionate about creating innovative digital experiences 
               and solving complex problems through code.
             </p>
@@ -73,7 +73,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300 ${social.color}`}
+                  className={`p-3 rounded-full dark:bg-white/5 light:bg-gray-800/5 backdrop-blur-sm border dark:border-white/10 light:border-gray-800/10 transition-all duration-300 ${social.color}`}
                   whileHover={{ 
                     scale: 1.1, 
                     y: -5,
@@ -98,13 +98,13 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-xl font-semibold mb-6 text-white">Quick Links</h4>
+            <h4 className="text-xl font-semibold mb-6 dark:text-white light:text-gray-900">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <motion.li key={link.name}>
                   <motion.a
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center group"
+                    className="dark:text-gray-300 light:text-gray-700 dark:hover:text-white light:hover:text-gray-900 transition-colors duration-300 flex items-center group"
                     whileHover={{ x: 5 }}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -126,10 +126,10 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-xl font-semibold mb-6 text-white">Get In Touch</h4>
+            <h4 className="text-xl font-semibold mb-6 dark:text-white light:text-gray-900">Get In Touch</h4>
             <div className="space-y-4">
               <motion.div 
-                className="flex items-center text-gray-300"
+                className="flex items-center dark:text-gray-300 light:text-gray-700"
                 whileHover={{ x: 5 }}
               >
                 <Mail className="w-5 h-5 mr-3 text-green-400" />
@@ -167,7 +167,7 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center">
           <motion.p 
-            className="text-gray-400 mb-4 md:mb-0 flex items-center"
+            className="dark:text-gray-400 light:text-gray-600 mb-4 md:mb-0 flex items-center"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
@@ -187,7 +187,7 @@ const Footer = () => {
           {/* Back to Top Button */}
           <motion.button
             onClick={scrollToTop}
-            className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 rounded-full border border-white/10 backdrop-blur-sm transition-all duration-300"
+            className="flex items-center space-x-2 px-6 py-3 dark:bg-gradient-to-r from-blue-500/20 to-purple-500/20 light:bg-gradient-to-r light:from-blue-500/10 light:to-purple-500/10 dark:hover:from-blue-500/30 dark:hover:to-purple-500/30 light:hover:from-blue-500/20 light:hover:to-purple-500/20 rounded-full border dark:border-white/10 light:border-gray-800/10 backdrop-blur-sm transition-all duration-300"
             whileHover={{ 
               scale: 1.05, 
               y: -2,

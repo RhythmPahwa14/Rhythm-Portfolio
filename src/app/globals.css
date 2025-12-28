@@ -15,11 +15,66 @@
 }
 
 .light {
-  --bg-primary: #ffffff;
+  --bg-primary: #f9fafb;
   --bg-secondary: #f3f4f6;
   --text-primary: #111827;
   --text-secondary: #4b5563;
   --border-color: #e5e7eb;
+}
+
+/* Global light theme text colors */
+.light .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+.light .text-gray-300 {
+  color: #6b7280 !important;
+}
+
+.light .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+.light .text-white {
+  color: #111827 !important;
+}
+
+.light .border-gray-700 {
+  border-color: #d1d5db !important;
+}
+
+.light .border-gray-200 {
+  border-color: #e5e7eb !important;
+}
+
+.light .border-white\/20 {
+  border-color: rgba(17, 24, 39, 0.15) !important;
+}
+
+.light .bg-white\/10 {
+  background-color: rgba(17, 24, 39, 0.05) !important;
+}
+
+.light .bg-white\/15 {
+  background-color: rgba(17, 24, 39, 0.08) !important;
+}
+
+.light .bg-white\/20 {
+  background-color: rgba(17, 24, 39, 0.1) !important;
+}
+
+.light .bg-white\/30 {
+  background-color: rgba(17, 24, 39, 0.15) !important;
+}
+
+.light .bg-gray-900 {
+  background-color: #1f2937 !important;
+}
+
+/* Make sure all sections use theme colors */
+.light section {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
 }
 
 html, body {
@@ -30,8 +85,10 @@ html, body {
 }
 
 body {
-  background: var(--background);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dark body {
@@ -40,7 +97,7 @@ body {
 }
 
 .light body {
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   color: var(--text-primary);
 }
 
