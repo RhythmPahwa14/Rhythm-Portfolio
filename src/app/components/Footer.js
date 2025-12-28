@@ -167,23 +167,25 @@ const Footer = () => {
         />
 
         {/* Bottom Footer */}
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <motion.p 
-            className="text-gray-400 mb-4 md:mb-0 flex items-center"
+            className="text-gray-400 text-xs md:text-base flex flex-wrap items-center justify-center md:justify-start gap-1"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            © 2025 <a href="https://github.com/rhythmpahwa14" target="_blank" rel="noopener noreferrer" className="mx-1 hover:text-blue-400 transition-colors duration-300">Rhythm Pahwa</a>. Made with 
-            <motion.span
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
-              className="mx-2"
-            >
-              <Heart className="w-5 h-5 text-red-400 fill-current" />
-            </motion.span>
-            and lots of coffee ☕
+            <span>© 2025 <a href="https://github.com/rhythmpahwa14" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors duration-300">Rhythm Pahwa</a>.</span>
+            <span className="flex items-center gap-1">
+              Made with
+              <motion.span
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
+              >
+                <Heart className="w-4 h-4 md:w-5 md:h-5 text-red-400 fill-current" />
+              </motion.span>
+              and lots of coffee ☕
+            </span>
           </motion.p>
           
           {/* Back to Top Button */}
