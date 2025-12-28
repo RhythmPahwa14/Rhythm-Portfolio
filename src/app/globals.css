@@ -22,17 +22,29 @@
   --border-color: #e5e7eb;
 }
 
-/* Global light theme text colors */
+/* Global light theme text colors - All grey to black */
 .light .text-gray-400:not(footer *) {
-  color: #6b7280 !important;
+  color: #000000 !important;
 }
 
 .light .text-gray-300:not(footer *) {
-  color: #6b7280 !important;
+  color: #000000 !important;
 }
 
 .light .text-gray-600:not(footer *) {
-  color: #4b5563 !important;
+  color: #000000 !important;
+}
+
+.light .text-gray-500 {
+  color: #000000 !important;
+}
+
+.light .text-gray-700 {
+  color: #000000 !important;
+}
+
+.light .text-gray-800 {
+  color: #000000 !important;
 }
 
 /* Footer specific light theme colors */

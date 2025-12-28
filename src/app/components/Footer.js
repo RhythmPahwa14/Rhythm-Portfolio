@@ -189,7 +189,7 @@ const Footer = () => {
           {/* Back to Top Button */}
           <motion.button
             onClick={scrollToTop}
-            className="flex items-center space-x-2 px-6 py-3 dark:bg-gradient-to-r from-blue-500/20 to-purple-500/20 light:bg-gradient-to-r light:from-blue-500/10 light:to-purple-500/10 dark:hover:from-blue-500/30 dark:hover:to-purple-500/30 light:hover:from-blue-500/20 light:hover:to-purple-500/20 rounded-full border dark:border-white/10 light:border-gray-800/10 backdrop-blur-sm transition-all duration-300"
+            className="flex items-center space-x-2 px-6 py-3 bg-white/10 border border-white/20 rounded-full backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
             whileHover={{ 
               scale: 1.05, 
               y: -2,

@@ -64,7 +64,7 @@ const Projects = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: index * 0.1 }}
         viewport={{ once: true }}
-        className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+        className="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
       >
         {/* Project Image */}
         <div className="relative overflow-hidden h-48 bg-gradient-to-br from-blue-500 to-purple-600">
@@ -85,7 +85,7 @@ const Projects = () => {
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-black/70 rounded-full text-white hover:bg-black/90 transition-colors duration-200"
+              className="p-2 bg-white/10 border border-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all duration-200"
               title="View on GitHub"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -97,11 +97,11 @@ const Projects = () => {
 
         {/* Project Content */}
         <div className="p-6">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
+          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-200">
             {project.title}
           </h3>
           
-          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+          <p className="text-gray-300 text-sm leading-relaxed mb-4">
             {project.description}
           </p>
 
@@ -110,7 +110,7 @@ const Projects = () => {
             {project.technologies.map((tech, techIndex) => (
               <span
                 key={techIndex}
-                className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium"
+                className="px-3 py-1 bg-white/20 text-white rounded-full text-xs font-medium backdrop-blur-sm"
               >
                 {tech}
               </span>
@@ -123,7 +123,7 @@ const Projects = () => {
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors duration-200 text-center text-sm font-medium"
+              className="w-full px-4 py-2 bg-white/10 border border-white/20 text-white rounded-lg hover:bg-white/20 backdrop-blur-sm transition-all duration-200 text-center text-sm font-medium"
             >
               View Code
             </a>
@@ -134,7 +134,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="relative py-20 bg-[#111827] transition-colors duration-300 overflow-hidden">
+    <section id="projects" className="relative py-20 bg-[var(--bg-primary)] transition-colors duration-300 overflow-hidden">
       <AnimatedBackground />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
@@ -150,7 +150,7 @@ const Projects = () => {
               Featured Projects
             </span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Here are some of my recent projects that showcase my skills in full-stack development, 
             UI/UX design, and problem-solving.
           </p>
@@ -171,14 +171,14 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-gray-600 dark:text-gray-300 mb-6">
+          <p className="text-gray-300 mb-6">
             Want to see more of my work?
           </p>
           <a
             href="https://github.com/RhythmPahwa14"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-300 font-medium"
+            className="inline-flex items-center px-8 py-3 bg-white/10 border border-white/20 text-white rounded-full hover:bg-white/20 backdrop-blur-sm transition-all duration-300 font-medium"
           >
             View All Projects on GitHub
             <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
