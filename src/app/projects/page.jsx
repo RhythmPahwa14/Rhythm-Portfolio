@@ -13,6 +13,7 @@ const Projects = () => {
       description: 'A web-based interactive platform for visualizing various data structures and algorithms, including sorting and searching techniques. Users can explore and understand the mechanics of algorithms through interactive visualizations.',
       image: '/projects/algovisualizer.jpg',
       githubLink: 'https://github.com/RhythmPahwa14/AlgoVisualizer',
+      liveDemo: 'https://algovisualizer.rhythmpahwa.tech/',
       technologies: ['JavaScript', 'HTML', 'CSS', 'Data Structures', 'Algorithms']
     },
     {
@@ -21,6 +22,7 @@ const Projects = () => {
       description: 'Help Nearby is a location-based React application that enables users to post and view help requests in real time. It integrates Google Maps API and OpenCage Geocoding to auto-detect and display human needs.',
       image: '/projects/help-nearby.jpg',
       githubLink: 'https://github.com/RhythmPahwa14/Help-Nearby',
+      liveDemo: 'https://help-nearby.vercel.app/',
       technologies: ['React', 'JavaScript', 'Google Maps API', 'OpenCage Geocoding', 'Real-time']
     },
     {
@@ -29,6 +31,7 @@ const Projects = () => {
       description: 'An AI-powered hand tracking drawing application with machine learning gesture recognition. Users can draw and write in the air using hand gestures captured through computer vision.',
       image: '/projects/virtual-notepad.jpg',
       githubLink: 'https://github.com/RhythmPahwa14/Virtual-Notepad',
+      liveDemo: 'https://virtual-notepad-ivory.vercel.app/',
       technologies: ['HTML', 'AI/ML', 'Computer Vision', 'Hand Tracking', 'Gesture Recognition']
     },
     {
@@ -37,6 +40,7 @@ const Projects = () => {
       description: 'Eventra is a comprehensive event management system that empowers organizers to create, manage, and track events seamlessly. Built with a modern tech stack featuring React frontend and Spring Boot backend.',
       image: '/projects/eventra.jpg',
       githubLink: 'https://github.com/RhythmPahwa14/Eventra',
+      liveDemo: 'https://eventra-psi.vercel.app/',
       technologies: ['React', 'Spring Boot', 'JavaScript', 'Java', 'Event Management']
     },
     {
@@ -45,6 +49,7 @@ const Projects = () => {
       description: 'My personal portfolio website built with Next.js and Tailwind CSS, showcasing my skills, projects, and experiences. Features modern animations and responsive design.',
       image: '/projects/portfolio.jpg',
       githubLink: 'https://github.com/RhythmPahwa14/Rhythm-Portfolio',
+      liveDemo: 'https://rhythmpahwa.tech',
       technologies: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'JavaScript']
     },
     {
@@ -64,7 +69,8 @@ const Projects = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: index * 0.1 }}
         viewport={{ once: true }}
-        className="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:bg-white/15 hover:border-white/30 transition-all duration-300"
+        whileHover={{ y: -8, scale: 1.02 }}
+        className="group relative bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-out"
       >
         {/* Project Image */}
         <div className="relative overflow-hidden h-48 bg-gradient-to-br from-blue-500 to-purple-600">
@@ -110,7 +116,7 @@ const Projects = () => {
             {project.technologies.map((tech, techIndex) => (
               <span
                 key={techIndex}
-                className="px-3 py-1 bg-white/20 text-white rounded-full text-xs font-medium backdrop-blur-sm"
+                className="px-3 py-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 border border-blue-400/30 text-white rounded-full text-xs font-medium backdrop-blur-sm hover:from-blue-500/30 hover:via-purple-500/30 hover:to-pink-500/30 hover:border-purple-400/50 transition-all duration-300"
               >
                 {tech}
               </span>
@@ -118,15 +124,25 @@ const Projects = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex space-x-3">
+          <div className="flex gap-3">
             <a
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full px-4 py-2 bg-white/10 border border-white/20 text-white rounded-lg hover:bg-white/20 backdrop-blur-sm transition-all duration-200 text-center text-sm font-medium"
+              className="flex-1 px-4 py-2 bg-transparent border-2 border-white/30 text-white rounded-lg hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300 text-center text-sm font-medium"
             >
-              View Code
+              GitHub
             </a>
+            {project.liveDemo && (
+              <a
+                href={project.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 px-4 py-2 bg-transparent border-2 border-white/30 text-white rounded-lg hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300 text-center text-sm font-medium"
+              >
+                Live Demo
+              </a>
+            )}
           </div>
         </div>
       </motion.div>
