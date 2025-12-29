@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ChevronDown, Code, Coffee } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import FadeInText from './FadeInText';
+import FadeRotatingText from './FadeRotatingText';
 import '../styles/Hero.css';
 
 export default function Hero() {
@@ -214,7 +215,7 @@ export default function Hero() {
         </motion.p>
 
         {/* Description */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.0 }}
@@ -224,31 +225,32 @@ export default function Hero() {
             " Debugging: finding where I lost my rhythm "
           </span>
           <br /><br />
-          <strong style={{ color: 'rgba(255, 255, 255, 1)', fontSize: '1.05em', fontWeight: 700 }}>
-            Amazon ML Summer School 2025 - Participant
-          </strong>
-          <br />
-          <strong style={{ color: 'rgba(255, 255, 255, 1)', fontSize: '1.05em', fontWeight: 700 }}>
-            GirlScript Summer of Code 2025 - Top 10 Project Admin
-          </strong>
-          <br />
-          <span style={{ fontFamily: 'monospace', fontSize: '0.95em', display: 'block', marginTop: '1.2rem', lineHeight: '1.8' }}>
+          <FadeRotatingText 
+            texts={[
+              "Amazon ML Summer School 2025 - Participant",
+              "GirlScript Summer of Code 2025 - Top 10 Project Admin"
+            ]}
+            displayDuration={3000}
+            fadeDuration={600}
+            loop={true}
+          />
+          <span style={{ fontFamily: 'monospace', fontSize: '0.95em', display: 'block', marginTop: '1.1rem', lineHeight: '1.8' }}>
             <FadeInText 
-              text="~ training AI/ML models that perform better than me."
+              text="~ developing full-stack applications that scale."
               delay={1200}
             />
             <br />
             <FadeInText 
-              text="~ building full-stack applications that turn ideas into experiences."
+              text="~ exploring cloud-native engineering principles."
               delay={1400}
             />
             <br />
             <FadeInText 
-              text="~ exploring cloud fundamentals and scalable engineering concepts."
+              text="~ training AI/ML models that perform better than me."
               delay={1600}
             />
           </span>
-        </motion.p>
+        </motion.div>
 
         {/* Action Buttons */}
         <motion.div
