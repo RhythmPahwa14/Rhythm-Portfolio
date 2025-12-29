@@ -99,11 +99,12 @@
 /* Tagline */
 .hero-tagline {
   font-family: var(--font-montserrat), sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 4vw, 3rem);
   font-weight: 500;
   margin: 0 0 1.1rem 0;
   color: rgba(255, 255, 255, 1);
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .light .hero-tagline {

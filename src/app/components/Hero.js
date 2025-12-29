@@ -221,10 +221,10 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1.0 }}
           className="hero-description"
         >
-          <span style={{ fontStyle: 'italic', fontSize: '1.1em' }}>
+          <div style={{ fontStyle: 'italic', fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             " Debugging: finding where I lost my rhythm "
-          </span>
-          <br /><br />
+          </div>
+          <br />
           <FadeRotatingText 
             texts={[
               "Amazon ML Summer School 2025 - Participant",

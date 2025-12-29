@@ -184,7 +184,7 @@ const Footer = () => {
               >
                 <Heart className="w-4 h-4 md:w-5 md:h-5 text-red-400 fill-current" />
               </motion.span>
-              and lots of coffee ☕
+              and lots of tea ☕
             </span>
           </motion.p>
           
