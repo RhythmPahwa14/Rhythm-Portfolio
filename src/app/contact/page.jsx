@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedBackground from '../components/AnimatedBackground';
+import { useTheme } from '../context/ThemeContext';
 import { 
   Mail, 
   Phone, 
@@ -14,10 +15,12 @@ import {
   Github,
   Linkedin,
   Calendar,
-  Clock
+  Clock,
+  Handshake
 } from 'lucide-react';
 
 const ContactPage = () => {
+  const { isDark } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -343,10 +346,10 @@ const ContactPage = () => {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-green-500/30 border border-green-500/40 rounded-lg p-4 flex items-center space-x-2 text-green-600 dark:text-green-400"
+                      className="bg-green-400/35 dark:bg-green-500/20 border border-green-500/50 dark:border-green-500/30 rounded-lg p-4 flex items-center space-x-2"
                     >
-                      <CheckCircle className="w-5 h-5" />
-                      <span>Message sent successfully! I'll get back to you soon.</span>
+                      <CheckCircle className="w-5 h-5" style={{ color: isDark ? '#ffffffff' : '#1f2937' }} />
+                      <span className="font-medium" style={{ color: isDark ? '#ffffff' : '#1f2937' }}>Message sent successfully! I'll get back to you soon.</span>
                     </motion.div>
                   )}
 
@@ -422,26 +425,29 @@ const ContactPage = () => {
                 viewport={{ once: true }}
                 className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 transition-all duration-300"
               >
-                <h4 className="text-white dark:text-white light:text-gray-900 text-lg font-semibold mb-4">Connect With Me</h4>
-                <div className="flex space-x-4">
+                <div className="flex items-center mb-9">
+                  <Handshake className="w-6 h-6 text-yellow-400 mr-3" />
+                  <h4 className="text-white dark:text-white light:text-gray-900 text-lg font-semibold">Connect With Me</h4>
+                </div>
+                <div className="flex justify-center items-center space-x-6">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={social.name}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-4 rounded-full bg-white/10 dark:bg-white/10 light:bg-gray-200 border border-white/20 dark:border-white/20 light:border-gray-300 text-white dark:text-white light:text-gray-700 transition-all duration-300 backdrop-blur-sm ${
-                      social.name === 'GitHub' 
-                        ? 'hover:bg-green-400/10 hover:border-green-400/30 hover:text-green-400 dark:hover:bg-green-400/10 dark:hover:border-green-400/30 dark:hover:text-green-400 light:hover:bg-green-100 light:hover:border-green-400 light:hover:text-green-600' 
-                        : 'hover:bg-blue-400/10 hover:border-blue-400/30 hover:text-blue-400 dark:hover:bg-blue-400/10 dark:hover:border-blue-400/30 dark:hover:text-blue-400 light:hover:bg-blue-100 light:hover:border-blue-400 light:hover:text-blue-600'
-                    }`}
+                    className="p-4 rounded-full transition-all duration-300 backdrop-blur-sm bg-gray-100 dark:bg-white/10 border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white group"
                     whileHover={{ scale: 1.1, y: -3 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
                   >
-                    <social.icon className="w-6 h-6" />
+                    <social.icon className={`w-6 h-6 transition-colors duration-300 ${
+                      social.name === 'GitHub' 
+                        ? 'group-hover:text-green-500 dark:group-hover:text-green-400' 
+                        : 'group-hover:text-blue-500 dark:group-hover:text-blue-400'
+                    }`} />
                   </motion.a>
                 ))}
               </div>

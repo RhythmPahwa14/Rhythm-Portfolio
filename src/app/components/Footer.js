@@ -73,7 +73,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-3 rounded-full dark:bg-white/5 light:bg-gray-800/5 backdrop-blur-sm border dark:border-white/10 light:border-gray-800/10 transition-all duration-300 ${social.color}`}
+                  className={`p-3 rounded-full bg-gray-100 dark:bg-white/5 backdrop-blur-sm border border-gray-300 dark:border-white/10 text-gray-700 dark:text-white transition-all duration-300 ${social.color}`}
                   whileHover={{ 
                     scale: 1.1, 
                     y: -5,

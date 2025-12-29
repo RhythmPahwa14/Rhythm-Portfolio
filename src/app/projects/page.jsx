@@ -11,7 +11,7 @@ const Projects = () => {
       id: 1,
       title: 'AlgoVisualizer',
       description: 'A web-based interactive platform for visualizing various data structures and algorithms, including sorting and searching techniques. Users can explore and understand the mechanics of algorithms through interactive visualizations.',
-      image: '/projects/algovisualizer.jpg',
+      image: '/projects/algo-visual.png',
       githubLink: 'https://github.com/RhythmPahwa14/AlgoVisualizer',
       liveDemo: 'https://algovisualizer.rhythmpahwa.tech/',
       technologies: ['JavaScript', 'HTML', 'CSS', 'Data Structures', 'Algorithms']
@@ -20,7 +20,7 @@ const Projects = () => {
       id: 2,
       title: 'Help-Nearby',
       description: 'Help Nearby is a location-based React application that enables users to post and view help requests in real time. It integrates Google Maps API and OpenCage Geocoding to auto-detect and display human needs.',
-      image: '/projects/help-nearby.jpg',
+      image: '/projects/help-nearby.png',
       githubLink: 'https://github.com/RhythmPahwa14/Help-Nearby',
       liveDemo: 'https://help-nearby.vercel.app/',
       technologies: ['React', 'JavaScript', 'Google Maps API', 'OpenCage Geocoding', 'Real-time']
@@ -29,7 +29,7 @@ const Projects = () => {
       id: 3,
       title: 'Virtual-Notepad',
       description: 'An AI-powered hand tracking drawing application with machine learning gesture recognition. Users can draw and write in the air using hand gestures captured through computer vision.',
-      image: '/projects/virtual-notepad.jpg',
+      image: '/projects/virtual-notepad.png',
       githubLink: 'https://github.com/RhythmPahwa14/Virtual-Notepad',
       liveDemo: 'https://virtual-notepad-ivory.vercel.app/',
       technologies: ['HTML', 'AI/ML', 'Computer Vision', 'Hand Tracking', 'Gesture Recognition']
@@ -38,7 +38,7 @@ const Projects = () => {
       id: 4,
       title: 'Eventra',
       description: 'Eventra is a comprehensive event management system that empowers organizers to create, manage, and track events seamlessly. Built with a modern tech stack featuring React frontend and Spring Boot backend.',
-      image: '/projects/eventra.jpg',
+      image: '/projects/eventra.png',
       githubLink: 'https://github.com/RhythmPahwa14/Eventra',
       liveDemo: 'https://eventra-psi.vercel.app/',
       technologies: ['React', 'Spring Boot', 'JavaScript', 'Java', 'Event Management']
@@ -47,7 +47,7 @@ const Projects = () => {
       id: 5,
       title: 'Rhythm-Portfolio',
       description: 'My personal portfolio website built with Next.js and Tailwind CSS, showcasing my skills, projects, and experiences. Features modern animations and responsive design.',
-      image: '/projects/portfolio.jpg',
+      image: '/projects/rhythm-portfolio.png',
       githubLink: 'https://github.com/RhythmPahwa14/Rhythm-Portfolio',
       liveDemo: 'https://rhythmpahwa.tech',
       technologies: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'JavaScript']
@@ -56,7 +56,7 @@ const Projects = () => {
       id: 6,
       title: 'Hangman-Game',
       description: 'A classic Hangman word guessing game implemented in Python. Features interactive gameplay, word categories, and a clean command-line interface for an engaging gaming experience.',
-      image: '/projects/hangman.jpg',
+      image: '/projects/hangman-game.png',
       githubLink: 'https://github.com/RhythmPahwa14/Hangman-Game',
       technologies: ['Python', 'Game Development', 'CLI', 'Object-Oriented Programming']
     }
