@@ -234,22 +234,26 @@ export default function Hero() {
             fadeDuration={600}
             loop={true}
           />
-          <span style={{ fontFamily: 'monospace', fontSize: '0.95em', display: 'block', marginTop: '1.1rem', lineHeight: '1.8' }}>
-            <FadeInText 
-              text="~ developing full-stack applications that scale."
-              delay={1200}
-            />
-            <br />
-            <FadeInText 
-              text="~ exploring cloud-native engineering principles."
-              delay={1400}
-            />
-            <br />
-            <FadeInText 
-              text="~ training AI/ML models that perform better than me."
-              delay={1600}
-            />
-          </span>
+          <div style={{ fontFamily: 'monospace', marginTop: '1.1rem', lineHeight: '1.8', fontSize: 'clamp(0.8rem, 2vw, 1rem)' }}>
+            <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <FadeInText 
+                text="~ developing full-stack applications that scale."
+                delay={1200}
+              />
+            </div>
+            <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <FadeInText 
+                text="~ exploring cloud-native engineering principles."
+                delay={1400}
+              />
+            </div>
+            <div style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <FadeInText 
+                text="~ training AI/ML models that perform better than me."
+                delay={1600}
+              />
+            </div>
+          </div>
         </motion.div>
 
         {/* Action Buttons */}
