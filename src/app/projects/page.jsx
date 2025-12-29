@@ -129,7 +129,7 @@ const Projects = () => {
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 px-4 py-2 bg-transparent border-2 border-white/30 text-white rounded-lg hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300 text-center text-sm font-medium"
+              className="flex-1 px-6 py-2 bg-white/10 border border-white/20 text-white rounded-full hover:bg-white/20 hover:border-white/30 backdrop-blur-sm transition-all duration-300 text-center text-sm font-medium"
             >
               GitHub
             </a>
@@ -138,7 +138,7 @@ const Projects = () => {
                 href={project.liveDemo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-4 py-2 bg-transparent border-2 border-white/30 text-white rounded-lg hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all duration-300 text-center text-sm font-medium"
+                className="flex-1 px-6 py-2 bg-white/10 border border-white/20 text-white rounded-full hover:bg-white/20 hover:border-white/30 backdrop-blur-sm transition-all duration-300 text-center text-sm font-medium"
               >
                 Live Demo
               </a>

@@ -27,18 +27,21 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center gap-0.5 md:gap-2">
           {/* Left: Name */}
-          <motion.div
+          <motion.a
+            href="#home"
             initial={{ y: -24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.55, ease: 'easeOut' }}
-            className={`backdrop-blur-2xl rounded-full px-2 md:px-6 py-1.5 md:py-2 transition-all duration-300 ${
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`backdrop-blur-2xl rounded-full px-2 md:px-6 py-1.5 md:py-2 transition-all duration-300 cursor-pointer ${
               isScrolled
                 ? isDark ? 'bg-black/80 border border-blue-500/20 shadow-2xl' : 'bg-white/80 border border-blue-500/20 shadow-2xl'
                 : isDark ? 'bg-white/5 border border-white/10 shadow-lg' : 'bg-gray-800/10 border border-gray-800/10 shadow-lg'
             }`}
           >
             <span className={`font-bold text-sm md:text-xl ${isDark ? 'text-white' : 'text-gray-900'}`}>Rhythm</span>
-          </motion.div>
+          </motion.a>
 
           {/* Center: pill-shaped nav */}
           <motion.div
