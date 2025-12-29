@@ -33,12 +33,10 @@ export default function About() {
       >
         <h2 className="text-4xl font-bold mb-4 text-[#ffcc70]">About Me</h2>
         <p className="text-lg leading-relaxed text-gray-400 mb-6">
-          Hi, I'm <span className="text-white font-semibold">Rhythm Pahwa</span>, specialize in React, Next.js, and springboot. I love crafting beautiful, functional web applications
-          and enjoy turning creative ideas into interactive experiences.
+          I'm <span className="text-white font-semibold">Rhythm</span>. I build full-stack applications with React, Next.js and Spring Boot and I'm learning AI and machine learning to make my work smarter and more useful. I like working on ideas that challenge me, including a gesture-based Virtual Notepad built with Computer Vision and Mediapipe.
         </p>
         <p className="text-lg leading-relaxed text-gray-400">
-          When I’m not coding, you’ll find me exploring new technologies, contributing to open-source projects,
-          or enjoying a good cup of coffee.
+          I'm still discovering cloud and modern development practices while shaping my projects step by step. Outside tech, I survive on tea, curiosity and a long list of things I want to learn next.
         </p>
       </motion.div>
     </section>
