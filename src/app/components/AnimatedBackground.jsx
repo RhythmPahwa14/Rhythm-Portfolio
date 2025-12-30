@@ -1,7 +1,9 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function AnimatedBackground() {
+  const { isDark } = useTheme();
   const canvasRef = useRef(null);
   const dotsRef = useRef([]);
 
@@ -22,15 +24,22 @@ export default function AnimatedBackground() {
     
     setCanvasSize();
 
-    // Create dots
+    // Create dots with theme-aware colors
     const numDots = 30;
     const dots = [];
-    const colors = [
-      { r: 96, g: 165, b: 250 },   // lighter blue
-      { r: 248, g: 113, b: 113 },  // lighter red
-      { r: 250, g: 204, b: 21 },   // lighter yellow
-      { r: 74, g: 222, b: 128 },   // lighter green
-    ];
+    const colors = isDark 
+      ? [
+          { r: 96, g: 165, b: 250 },   // lighter blue
+          { r: 248, g: 113, b: 113 },  // lighter red
+          { r: 250, g: 204, b: 21 },   // lighter yellow
+          { r: 74, g: 222, b: 128 },   // lighter green
+        ]
+      : [
+          { r: 59, g: 130, b: 246 },   // darker blue for light mode
+          { r: 239, g: 68, b: 68 },    // darker red for light mode
+          { r: 234, g: 179, b: 8 },    // darker yellow for light mode
+          { r: 34, g: 197, b: 94 },    // darker green for light mode
+        ];
 
     for (let i = 0; i < numDots; i++) {
       const color = colors[i % colors.length];
@@ -69,7 +78,9 @@ export default function AnimatedBackground() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 120) {
-            const opacity = (1 - distance / 120) * 0.40;
+            const opacity = isDark 
+              ? (1 - distance / 120) * 0.40 
+              : (1 - distance / 120) * 0.25;
             ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -79,8 +90,9 @@ export default function AnimatedBackground() {
           }
         }
 
-        // Draw dot
-        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.6)`;
+        // Draw dot with theme-aware opacity
+        const dotOpacity = isDark ? 0.6 : 0.4;
+        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${dotOpacity})`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
@@ -110,7 +122,7 @@ export default function AnimatedBackground() {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isDark]);
 
   return (
     <canvas 
