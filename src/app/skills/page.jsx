@@ -1,54 +1,52 @@
 'use client';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code, Database, Cloud, Layers, Star, TrendingUp } from 'lucide-react';
+import { Code, Database, Cloud, Layers, Zap } from 'lucide-react';
 import AnimatedBackground from '../components/AnimatedBackground';
+import { useTheme } from '../context/ThemeContext';
 
 const Skills = () => {
+  const { isDark } = useTheme();
   const [imageErrors, setImageErrors] = useState({});
 
-  // Skills data organized by categories with enhanced information
+  // Skills data organized by categories
   const skillsData = {
     languages: {
       title: 'Programming Languages',
       icon: Code,
-      color: 'from-blue-500 to-cyan-500',
       skills: [
-        { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', level: 90 },
-        { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', level: 85 },
-        { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', level: 80 },
-        { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', level: 85 }
+        { name: 'Java', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+        { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+        { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' }
       ]
     },
     frameworks: {
       title: 'Frameworks & Libraries',
       icon: Layers,
-      color: 'from-purple-500 to-pink-500',
       skills: [
-        { name: 'Spring Boot', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg', level: 88 },
-        { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', level: 90 },
-        { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg', level: 82 },
-        { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg', level: 85 }
+        { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+        { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+        { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg' },
+        { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' }
       ]
     },
     databases: {
       title: 'Databases',
       icon: Database,
-      color: 'from-orange-500 to-red-500',
       skills: [
-        { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', level: 85 },
-        { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg', level: 80 },
-        { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', level: 75 }
+        { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+        { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+        { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' }
       ]
     },
     cloudDevOps: {
       title: 'Cloud & DevOps',
       icon: Cloud,
-      color: 'from-green-500 to-emerald-500',
       skills: [
-        { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg', level: 78 },
-        { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', level: 80 },
-        { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', level: 90 }
+        { name: 'AWS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg' },
+        { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg' },
+        { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+        { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' }
       ]
     }
   };
@@ -57,57 +55,35 @@ const Skills = () => {
     setImageErrors(prev => ({ ...prev, [skillName]: true }));
   };
 
-  const SkillCard = ({ skill, delay = 0, categoryColor }) => {
+  const SkillCard = ({ skill, delay = 0 }) => {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 20, scale: 0.9 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.5, delay }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, delay }}
         viewport={{ once: true }}
-        whileHover={{ y: -8, scale: 1.05 }}
-        className="relative group"
+        whileHover={{ scale: 1.05 }}
+        className="inline-block"
       >
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-all duration-300 relative overflow-hidden">
-          {/* Gradient Overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${categoryColor} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-xl`}></div>
-          
-          {/* Skill Icon */}
-          <div className="relative z-10 flex flex-col items-center space-y-4">
-            <div className="w-16 h-16 flex items-center justify-center bg-white/10 rounded-lg group-hover:bg-white/20 transition-all duration-300">
-              {!imageErrors[skill.name] ? (
-                <img 
-                  src={skill.icon} 
-                  alt={skill.name}
-                  className="w-12 h-12 object-contain"
-                  onError={() => handleImageError(skill.name)}
-                />
-              ) : (
-                <Code className="w-8 h-8 text-white" />
-              )}
-            </div>
-            
-            {/* Skill Name */}
-            <h4 className="text-white font-semibold text-center">{skill.name}</h4>
-            
-            {/* Skill Level Bar */}
-            <div className="w-full">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-xs text-gray-300">Proficiency</span>
-                <span className="text-xs text-gray-300">{skill.level}%</span>
-              </div>
-              <div className="w-full bg-white/20 rounded-full h-2">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1, delay: delay + 0.3 }}
-                  viewport={{ once: true }}
-                  className={`h-2 bg-gradient-to-r ${categoryColor} rounded-full relative overflow-hidden`}
-                >
-                  <div className="absolute inset-0 bg-white/30 animate-pulse"></div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
+        <div className={`${
+          isDark 
+            ? 'bg-white/10 border-white/20 hover:bg-white/15' 
+            : 'bg-black/5 border-black/10 hover:bg-black/8'
+        } backdrop-blur-sm border rounded-full px-4 py-2 transition-all duration-300 flex items-center gap-2`}>
+          {!imageErrors[skill.name] ? (
+            <img 
+              src={skill.icon} 
+              alt={skill.name}
+              className="w-5 h-5 object-contain"
+              onError={() => handleImageError(skill.name)}
+              loading="lazy"
+            />
+          ) : (
+            <Code className={`w-4 h-4 ${isDark ? 'text-white' : 'text-[#111827]'}`} />
+          )}
+          <span className={`${isDark ? 'text-white' : 'text-[#111827]'} font-medium text-sm`}>
+            {skill.name}
+          </span>
         </div>
       </motion.div>
     );
@@ -118,47 +94,35 @@ const Skills = () => {
     
     return (
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: index * 0.2 }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
         viewport={{ once: true }}
-        className="mb-16"
+        className="mb-8"
       >
         {/* Category Header */}
-        <div className="text-center mb-12">
+        <div className="mb-4 text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.2 + 0.1 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.1 + 0.1 }}
             viewport={{ once: true }}
             className="inline-flex items-center space-x-3 mb-4"
           >
-            <div className={`p-3 rounded-xl bg-gradient-to-r ${category.color} bg-opacity-20`}>
-              <IconComponent className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white">
+            <IconComponent className={`w-6 h-6 ${isDark ? 'text-white' : 'text-[#111827]'}`} />
+            <h3 className={`text-xl md:text-xl font-bold ${isDark ? 'text-white' : 'text-[#111827]'}`}>
               {category.title}
             </h3>
           </motion.div>
-          
-          {/* Decorative Line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: index * 0.2 + 0.3 }}
-            viewport={{ once: true }}
-            className={`w-24 h-1 bg-gradient-to-r ${category.color} mx-auto rounded-full`}
-          />
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {/* Skills Badges */}
+        <div className="flex flex-wrap gap-3 justify-center">
           {category.skills.map((skill, skillIndex) => (
             <SkillCard 
               key={skill.name} 
               skill={skill} 
-              delay={skillIndex * 0.1}
-              categoryColor={category.color}
+              delay={skillIndex * 0.05}
             />
           ))}
         </div>
@@ -167,7 +131,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-[#111827] relative overflow-hidden">
+    <section id="skills" className={`py-20 ${isDark ? 'bg-[#111827]' : 'bg-[#f3f4f6]'} relative overflow-hidden min-h-screen`}>
       <AnimatedBackground />
 
       <div className="relative max-w-7xl mx-auto px-6">
@@ -177,7 +141,7 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-8"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -185,69 +149,27 @@ const Skills = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="inline-block mb-4"
           >
-            <span className="px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-medium backdrop-blur-sm">
-              Technical Expertise
+            <span className={`px-4 py-2 ${
+              isDark 
+                ? 'bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-500/20 text-blue-400' 
+                : 'bg-gradient-to-r from-blue-50 to-purple-50 border-blue-300 text-blue-600'
+            } border rounded-full text-sm font-medium backdrop-blur-sm inline-flex items-center space-x-2`}>
+              <Zap className="w-4 h-4" />
+              <span>Technical Expertise</span>
             </span>
           </motion.div>
           
-          <motion.h2 
+          <motion.h3 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl md:text-6xl font-bold mb-6"
+            className={`text-4xl md:text-2xl lg:text-4xl font-bold mb-4 ${
+              isDark ? 'text-white' : 'text-[#111827]'
+            }`}
           >
-            <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-teal-400 bg-clip-text text-transparent">
-              Skills & 
-            </span>
-            <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-400 bg-clip-text text-transparent">
-              {" "}Technologies
-            </span>
-          </motion.h2>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-          >
-            A comprehensive toolkit of modern technologies and frameworks that I leverage 
-            to build{" "}
-            <span className="text-blue-400 font-semibold">scalable applications</span>,{" "}
-            <span className="text-purple-400 font-semibold">robust systems</span>, and{" "}
-            <span className="text-pink-400 font-semibold">innovative solutions</span>.
-          </motion.p>
+            Skills & Technologies
+          </motion.h3>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="flex justify-center items-center space-x-8 mt-8"
-          >
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-400 flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 mr-2" />
-                15+
-              </div>
-              <div className="text-sm text-gray-400">Technologies</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 flex items-center justify-center">
-                <Star className="w-6 h-6 mr-2" />
-                3+
-              </div>
-              <div className="text-sm text-gray-400">Years Experience</div>
-            </div>
-          </motion.div>
-
-          {/* Decorative Line */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-8 rounded-full"
-          />
         </motion.div>
 
         {/* Skills Categories */}
