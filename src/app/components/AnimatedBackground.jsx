@@ -25,7 +25,7 @@ export default function AnimatedBackground() {
     setCanvasSize();
 
     // Create dots with theme-aware colors
-    const numDots = 30;
+    const numDots = 20; // Reduced number of dots for better performance
     const dots = [];
     const colors = isDark 
       ? [
@@ -77,10 +77,10 @@ export default function AnimatedBackground() {
           const dy = dot.y - otherDot.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 120) {
+          if (distance < 80) { // Lowered distance for fewer lines
             const opacity = isDark 
-              ? (1 - distance / 120) * 0.40 
-              : (1 - distance / 120) * 0.25;
+              ? (1 - distance / 80) * 0.40 
+              : (1 - distance / 80) * 0.25;
             ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -90,9 +90,8 @@ export default function AnimatedBackground() {
           }
         }
 
-        // Draw dot with theme-aware opacity
-        const dotOpacity = isDark ? 0.6 : 0.4;
-        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${dotOpacity})`;
+        // Draw dot with same opacity as Hero section
+        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.4)`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
         ctx.fill();
