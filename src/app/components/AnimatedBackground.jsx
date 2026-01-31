@@ -43,7 +43,7 @@ export default function AnimatedBackground() {
 
     for (let i = 0; i < numDots; i++) {
       const color = colors[i % colors.length];
-      const speed = 2;
+      const speed = 4; // Match Hero section speed
       const angle = Math.random() * Math.PI * 2;
       dots.push({
         x: Math.random() * canvas.width,
@@ -108,13 +108,15 @@ export default function AnimatedBackground() {
       dots.length = 0;
       for (let i = 0; i < numDots; i++) {
         const color = colors[i % colors.length];
+        const speed = 4; // Match Hero section speed
+        const angle = Math.random() * Math.PI * 2;
         dots.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 5,
-          vy: (Math.random() - 0.5) * 5,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
           color: color,
-          radius: Math.random() * 3 + 2
+          radius: Math.random() * 3 + 3
         });
       }
     };
