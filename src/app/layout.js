@@ -14,6 +14,9 @@ export const metadata = {
   author: "Rhythm Pahwa",
 };
 
+// Disable static optimization for client-side features
+export const dynamic = 'force-dynamic';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

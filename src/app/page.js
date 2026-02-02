@@ -1,15 +1,16 @@
 'use client';
 import { useState, lazy, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import Hero from './components/Hero';
 import SplashScreen from './components/SplashScreen';
 import Navbar from './components/Navbar';
 
-// Lazy load sections for better performance
-const About = lazy(() => import('./about/page'));
-const Skills = lazy(() => import('./skills/page'));
-const Projects = lazy(() => import('./projects/page'));
-const Contact = lazy(() => import('./contact/page'));
-const Footer = lazy(() => import('./components/Footer'));
+// Dynamically import sections with no SSR for better performance
+const About = dynamic(() => import('./about/page'), { ssr: false });
+const Skills = dynamic(() => import('./skills/page'), { ssr: false });
+const Projects = dynamic(() => import('./projects/page'), { ssr: false });
+const Contact = dynamic(() => import('./contact/page'), { ssr: false });
+const Footer = dynamic(() => import('./components/Footer'), { ssr: false });
 
 export default function Page() {
   const [showSplash, setShowSplash] = useState(true);
@@ -26,13 +27,11 @@ export default function Page() {
       ) : (
         <>
           <Hero />
-          <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
-            <About />
-            <Skills />
-            <Projects />
-            <Contact />
-            <Footer />
-          </Suspense>
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+          <Footer />
         </>
       )}
     </main>
