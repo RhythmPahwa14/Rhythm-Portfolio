@@ -1,6 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
+import { useEffect, useRef } from 'react';
 
 export default function AnimatedBackground() {
   const { isDark } = useTheme();
@@ -131,9 +130,12 @@ export default function AnimatedBackground() {
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
           color: color,
-          radius: Math.random() * 3 + 3
+          radius: Math.random() * 2 + 3
         });
-      }2
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
     
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -141,10 +143,7 @@ export default function AnimatedBackground() {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    };
   }, [isDark]);
 
   return (
