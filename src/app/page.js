@@ -1,14 +1,15 @@
 'use client';
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import Hero from './components/Hero';
 import SplashScreen from './components/SplashScreen';
-import Navbar from './components/Navbar'; 
-import About from './about/page';
-import Skills from './skills/page';
-import Projects from './projects/page';
-import Contact from './contact/page';
-import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
+// Lazy load sections for better performance
+const About = lazy(() => import('./about/page'));
+const Skills = lazy(() => import('./skills/page'));
+const Projects = lazy(() => import('./projects/page'));
+const Contact = lazy(() => import('./contact/page'));
+const Footer = lazy(() => import('./components/Footer'));
 
 export default function Page() {
   const [showSplash, setShowSplash] = useState(true);
@@ -23,13 +24,17 @@ export default function Page() {
       {showSplash ? (
         <SplashScreen onComplete={handleSplashComplete} />
       ) : (
-        <Hero />
+        <>
+          <Hero />
+          <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
+            <About />
+            <Skills />
+            <Projects />
+            <Contact />
+            <Footer />
+          </Suspense>
+        </>
       )}
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
     </main>
   );
 }

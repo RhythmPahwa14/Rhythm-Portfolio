@@ -1,11 +1,13 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
 export default function AnimatedBackground() {
   const { isDark } = useTheme();
   const canvasRef = useRef(null);
   const dotsRef = useRef([]);
+  const animationFrameRef = useRef(null);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -24,8 +26,20 @@ export default function AnimatedBackground() {
     
     setCanvasSize();
 
+    // Intersection Observer to pause animation when not visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisibleRef.current = entry.isIntersecting;
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(canvas);
+
     // Create dots with theme-aware colors
-    const numDots = 20; // Reduced number of dots for better performance
+    const numDots = 20; // Optimized for performance
     const dots = [];
     const colors = isDark 
       ? [
@@ -51,53 +65,54 @@ export default function AnimatedBackground() {
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         color: color,
-        radius: Math.random() * 3 + 3
+        radius: Math.random() * 2 + 3
       });
     }
 
     dotsRef.current = dots;
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Only animate if visible
+      if (isVisibleRef.current) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Update and draw dots
-      dots.forEach((dot, i) => {
-        // Move dots
-        dot.x += dot.vx;
-        dot.y += dot.vy;
+        // Update and draw dots
+        dots.forEach((dot, i) => {
+          // Move dots
+          dot.x += dot.vx;
+          dot.y += dot.vy;
 
-        // Bounce off edges
-        if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
-        if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
+          // Bounce off edges
+          if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
+          if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
 
-        // Draw lines to nearby dots (only check forward to avoid duplicates)
-        for (let j = i + 1; j < dots.length; j++) {
-          const otherDot = dots[j];
-          const dx = dot.x - otherDot.x;
-          const dy = dot.y - otherDot.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          // Draw lines to nearby dots (only check forward to avoid duplicates)
+          for (let j = i + 1; j < dots.length; j++) {
+            const otherDot = dots[j];
+            const dx = dot.x - otherDot.x;
+            const dy = dot.y - otherDot.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 80) { // Lowered distance for fewer lines
-            const opacity = isDark 
-              ? (1 - distance / 80) * 0.40 
-              : (1 - distance / 80) * 0.25;
-            ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(dot.x, dot.y);
-            ctx.lineTo(otherDot.x, otherDot.y);
-            ctx.stroke();
+            if (distance < 120) {
+              const opacity = (1 - distance / 120) * 0.30;
+              ctx.strokeStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, ${opacity})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(dot.x, dot.y);
+              ctx.lineTo(otherDot.x, otherDot.y);
+              ctx.stroke();
+            }
           }
-        }
 
-        // Draw dot with same opacity as Hero section
-        ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.4)`;
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
+          // Draw dot
+          ctx.fillStyle = `rgba(${dot.color.r}, ${dot.color.g}, ${dot.color.b}, 0.4)`;
+          ctx.beginPath();
+          ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
 
-      requestAnimationFrame(animate);
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
     animate();
@@ -118,8 +133,15 @@ export default function AnimatedBackground() {
           color: color,
           radius: Math.random() * 3 + 3
         });
+      }2
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      observer.disconnect();
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
-    };
+    }
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);

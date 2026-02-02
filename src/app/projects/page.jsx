@@ -67,10 +67,10 @@ const Projects = () => {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: index * 0.1 }}
-        viewport={{ once: true }}
-        whileHover={{ y: -8, scale: 1.02 }}
-        className="group relative bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ease-out"
+        transition={{ duration: 0.5, delay: index * 0.05 }}
+        viewport={{ once: true, margin: "-50px" }}
+        whileHover={{ y: -8 }}
+        className="group relative bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-out"
       >
         {/* Project Image */}
         <div className="relative overflow-hidden h-48 bg-gradient-to-br from-blue-500 to-purple-600">

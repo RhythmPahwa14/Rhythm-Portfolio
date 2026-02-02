@@ -9,13 +9,14 @@ import '../styles/Hero.css';
 export default function Hero() {
   const canvasRef = useRef(null);
   const dotsRef = useRef([]);
+  const animationFrameRef = useRef(null);
   const [typedText, setTypedText] = useState('');
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     
     // Set canvas size properly to prevent distortion
     const setCanvasSize = () => {
@@ -29,7 +30,7 @@ export default function Hero() {
     setCanvasSize();
 
     // Create dots
-    const numDots = 27;
+    const numDots = 22; // Reduced for better performance
     const dots = [];
     const colors = [
       { r: 96, g: 165, b: 250 },   // lighter blue
@@ -97,7 +98,7 @@ export default function Hero() {
         ctx.closePath();
       });
 
-      requestAnimationFrame(animate);
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
     animate();
@@ -122,7 +123,13 @@ export default function Hero() {
     };
 
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, []);
 
   // Typing effect
