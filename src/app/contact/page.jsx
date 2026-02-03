@@ -229,7 +229,7 @@ const ContactPage = () => {
                     )}
                   </div>
 
-                  {/* Email Field */>
+                  {/* Email Field */}
                   <div>
                     <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       <Mail className="w-4 h-4 inline mr-2" />
@@ -253,7 +253,7 @@ const ContactPage = () => {
                     )}
                   </div>
 
-                  {/* Subject Field */>
+                  {/* Subject Field */}
                   <div>
                     <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       Subject
@@ -276,7 +276,7 @@ const ContactPage = () => {
                     )}
                   </div>
 
-                  {/* Message Field */>
+                  {/* Message Field */}
                   <div>
                     <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       <MessageSquare className="w-4 h-4 inline mr-2" />
@@ -300,7 +300,7 @@ const ContactPage = () => {
                     )}
                   </div>
 
-                  {/* Submit Button */>
+                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={isSubmitting}
