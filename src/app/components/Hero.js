@@ -45,7 +45,7 @@ export default function Hero() {
     
     for (let i = 0; i < numDots; i++) {
       const color = colors[i % colors.length];
-      const speed = 4; // Increased speed for faster movement
+      const speed = 2; // Increased speed for faster movement
       const angle = Math.random() * Math.PI * 2;
       dots.push({
         x: Math.random() * displayWidth,
@@ -109,7 +109,7 @@ export default function Hero() {
       dots.length = 0;
       for (let i = 0; i < numDots; i++) {
         const color = colors[i % colors.length];
-        const speed = 4; // Increased speed for faster movement
+        const speed = 2; // Increased speed for faster movement
         const angle = Math.random() * Math.PI * 2;
         dots.push({
           x: Math.random() * canvas.width,

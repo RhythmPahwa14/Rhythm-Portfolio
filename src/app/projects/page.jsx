@@ -68,30 +68,30 @@ const Projects = () => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.05 }}
-        viewport={{ once: true, margin: "-50px" }}
-        whileHover={{ y: -8 }}
-        className="group relative bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-out"
+        viewport={{ once: true, margin: "-50px", amount: 0.2 }}
+        className="group relative bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-out hover:-translate-y-2"
       >
         {/* Project Image */}
         <div className="relative overflow-hidden h-48 bg-gradient-to-br from-blue-500 to-purple-600">
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            loading="lazy"
             onError={(e) => {
               // Fallback to gradient background if image fails to load
               e.target.style.display = 'none';
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
           {/* Overlay Links */}
-          <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             <a
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-white/10 border border-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all duration-200"
+              className="p-2 bg-white/10 border border-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-colors duration-200"
               title="View on GitHub"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -116,7 +116,7 @@ const Projects = () => {
             {project.technologies.map((tech, techIndex) => (
               <span
                 key={techIndex}
-                className="px-3 py-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 border border-blue-400/30 text-white rounded-full text-xs font-medium backdrop-blur-sm hover:from-blue-500/30 hover:via-purple-500/30 hover:to-pink-500/30 hover:border-purple-400/50 transition-all duration-300"
+                className="px-3 py-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 border border-blue-400/30 text-white rounded-full text-xs font-medium hover:from-blue-500/30 hover:via-purple-500/30 hover:to-pink-500/30 hover:border-purple-400/50 transition-colors duration-300"
               >
                 {tech}
               </span>
@@ -129,7 +129,7 @@ const Projects = () => {
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 px-6 py-2 bg-white/10 border border-white/20 text-white rounded-full hover:bg-white/20 hover:border-white/30 backdrop-blur-sm transition-all duration-300 text-center text-sm font-medium"
+              className="flex-1 px-6 py-2 bg-white/10 border border-white/20 text-white rounded-full hover:bg-white/20 hover:border-white/30 transition-colors duration-300 text-center text-sm font-medium"
             >
               GitHub
             </a>
@@ -138,7 +138,7 @@ const Projects = () => {
                 href={project.liveDemo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 px-6 py-2 bg-white/10 border border-white/20 text-white rounded-full hover:bg-white/20 hover:border-white/30 backdrop-blur-sm transition-all duration-300 text-center text-sm font-medium"
+                className="flex-1 px-6 py-2 bg-white/10 border border-white/20 text-white rounded-full hover:bg-white/20 hover:border-white/30 transition-colors duration-300 text-center text-sm font-medium"
               >
                 Live Demo
               </a>
@@ -194,7 +194,7 @@ const Projects = () => {
             href="https://github.com/RhythmPahwa14"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-3 bg-white/10 border border-white/20 text-white rounded-full hover:bg-white/20 backdrop-blur-sm transition-all duration-300 font-medium"
+            className="inline-flex items-center px-8 py-3 bg-white/10 border border-white/20 text-white rounded-full hover:bg-white/20 transition-colors duration-300 font-medium"
           >
             View All Projects on GitHub
             <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

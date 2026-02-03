@@ -57,7 +57,7 @@ export default function AnimatedBackground() {
 
     for (let i = 0; i < numDots; i++) {
       const color = colors[i % colors.length];
-      const speed = 4; // Match Hero section speed
+      const speed = 2; // Match Hero section speed
       const angle = Math.random() * Math.PI * 2;
       dots.push({
         x: Math.random() * canvas.width,
@@ -123,7 +123,7 @@ export default function AnimatedBackground() {
       dots.length = 0;
       for (let i = 0; i < numDots; i++) {
         const color = colors[i % colors.length];
-        const speed = 4; // Match Hero section speed
+        const speed = 2; // Match Hero section speed
         const angle = Math.random() * Math.PI * 2;
         dots.push({
           x: Math.random() * canvas.width,
