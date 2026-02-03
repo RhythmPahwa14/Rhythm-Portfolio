@@ -304,7 +304,7 @@ const ContactPage = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-white/10 dark:bg-white/10 light:bg-gray-200/80 border border-white/20 dark:border-white/20 light:border-gray-300 text-white dark:text-white light:text-gray-900 font-semibold py-4 px-6 rounded-full hover:bg-white/20 dark:hover:bg-white/20 light:hover:bg-gray-300/80 hover:scale-105 hover:-translate-y-0.5 active:scale-95 transition-[transform,background-color] duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0">
+                    className="w-full bg-white/10 dark:bg-white/10 light:bg-gray-200/80 border border-white/20 dark:border-white/20 light:border-gray-300 text-white dark:text-white light:text-gray-900 font-semibold py-4 px-6 rounded-full hover:bg-white/20 dark:hover:bg-white/20 light:hover:bg-gray-300/80 hover:scale-105 hover:-translate-y-0.5 active:scale-95 transition-[transform,background-color] duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0"
                   >
                     {isSubmitting ? (
                       <>
@@ -365,7 +365,7 @@ const ContactPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 cursor-pointer group block transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:scale-[1.02]">
+                    className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 cursor-pointer group block transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:scale-[1.02]"
                   >
                     <div className={`w-12 h-12 ${info.color} bg-white/5 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <info.icon className="w-6 h-6" />
@@ -380,7 +380,7 @@ const ContactPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 group transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:scale-[1.02]">
+                    className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 group transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:scale-[1.02]"
                   >
                     <div className={`w-12 h-12 ${info.color} bg-white/5 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <info.icon className="w-6 h-6" />
@@ -399,7 +399,7 @@ const ContactPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 transition-[border-color] duration-300">
+                className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 transition-[border-color] duration-300"
               >
                 <div className="flex items-center mb-9">
                   <Handshake className="w-6 h-6 text-yellow-400 mr-3" />
@@ -433,7 +433,7 @@ const ContactPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 transition-[border-color] duration-300">
+              className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 transition-[border-color] duration-300"
             >
               <div className="flex items-center mb-4">
                 <Clock className="w-6 h-6 text-blue-400 mr-3" />
