@@ -69,7 +69,7 @@ const Projects = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.05 }}
         viewport={{ once: true, margin: "-50px", amount: 0.2 }}
-        className="group relative bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-out hover:-translate-y-2"
+        className="group relative bg-white/10 border border-white/20 hover:border-white/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-2 will-change-transform">
       >
         {/* Project Image */}
         <div className="relative overflow-hidden h-48 bg-gradient-to-br from-blue-500 to-purple-600">

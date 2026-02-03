@@ -206,12 +206,7 @@ const ContactPage = () => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name Field */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    viewport={{ once: true }}
-                  >
+                  <div>
                     <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       <User className="w-4 h-4 inline mr-2" />
                       Full Name
@@ -223,7 +218,7 @@ const ContactPage = () => {
                       onChange={handleChange}
                       className={`w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border ${
                         errors.name ? 'border-red-400' : 'border-white/20 dark:border-white/20 light:border-gray-300'
-                      } rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300`}
+                      } rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-[border-color,box-shadow] duration-300`}
                       placeholder="Enter your full name"
                     />
                     {errors.name && (
@@ -232,15 +227,10 @@ const ContactPage = () => {
                         {errors.name}
                       </p>
                     )}
-                  </motion.div>
+                  </div>
 
-                  {/* Email Field */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    viewport={{ once: true }}
-                  >
+                  {/* Email Field */>
+                  <div>
                     <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       <Mail className="w-4 h-4 inline mr-2" />
                       Email Address
@@ -252,7 +242,7 @@ const ContactPage = () => {
                       onChange={handleChange}
                       className={`w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border ${
                         errors.email ? 'border-red-400' : 'border-white/20 dark:border-white/20 light:border-gray-300'
-                      } rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300`}
+                      } rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-[border-color,box-shadow] duration-300`}
                       placeholder="Enter your email address"
                     />
                     {errors.email && (
@@ -261,15 +251,10 @@ const ContactPage = () => {
                         {errors.email}
                       </p>
                     )}
-                  </motion.div>
+                  </div>
 
-                  {/* Subject Field */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    viewport={{ once: true }}
-                  >
+                  {/* Subject Field */>
+                  <div>
                     <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       Subject
                     </label>
@@ -280,7 +265,7 @@ const ContactPage = () => {
                       onChange={handleChange}
                       className={`w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border ${
                         errors.subject ? 'border-red-400' : 'border-white/20 dark:border-white/20 light:border-gray-300'
-                      } rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300`}
+                      } rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-[border-color,box-shadow] duration-300`}
                       placeholder="What's this about?"
                     />
                     {errors.subject && (
@@ -289,15 +274,10 @@ const ContactPage = () => {
                         {errors.subject}
                       </p>
                     )}
-                  </motion.div>
+                  </div>
 
-                  {/* Message Field */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    viewport={{ once: true }}
-                  >
+                  {/* Message Field */>
+                  <div>
                     <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       <MessageSquare className="w-4 h-4 inline mr-2" />
                       Message
@@ -309,7 +289,7 @@ const ContactPage = () => {
                       rows={5}
                       className={`w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border ${
                         errors.message ? 'border-red-400' : 'border-white/20 dark:border-white/20 light:border-gray-300'
-                      } rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300 resize-none`}
+                      } rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-[border-color,box-shadow] duration-300 resize-none`}
                       placeholder="Tell me about your project or idea..."
                     />
                     {errors.message && (
@@ -318,15 +298,13 @@ const ContactPage = () => {
                         {errors.message}
                       </p>
                     )}
-                  </motion.div>
+                  </div>
 
-                  {/* Submit Button */}
-                  <motion.button
+                  {/* Submit Button */>
+                  <button
                     type="submit"
                     disabled={isSubmitting}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full bg-white/10 dark:bg-white/10 light:bg-gray-200/80 border border-white/20 dark:border-white/20 light:border-gray-300 text-white dark:text-white light:text-gray-900 font-semibold py-4 px-6 rounded-full hover:bg-white/20 dark:hover:bg-white/20 light:hover:bg-gray-300/80 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
+                    className="w-full bg-white/10 dark:bg-white/10 light:bg-gray-200/80 border border-white/20 dark:border-white/20 light:border-gray-300 text-white dark:text-white light:text-gray-900 font-semibold py-4 px-6 rounded-full hover:bg-white/20 dark:hover:bg-white/20 light:hover:bg-gray-300/80 hover:scale-105 hover:-translate-y-0.5 active:scale-95 transition-[transform,background-color] duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0">
                   >
                     {isSubmitting ? (
                       <>
@@ -339,7 +317,7 @@ const ContactPage = () => {
                         <span>Send Message</span>
                       </>
                     )}
-                  </motion.button>
+                  </button>
 
                   {/* Success/Error Messages */}
                   {submitStatus === 'success' && (
@@ -387,8 +365,7 @@ const ContactPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ y: -5, scale: 1.02 }}
-                    className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 cursor-pointer group block transition-all duration-300"
+                    className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 cursor-pointer group block transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:scale-[1.02]">
                   >
                     <div className={`w-12 h-12 ${info.color} bg-white/5 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <info.icon className="w-6 h-6" />
@@ -403,8 +380,7 @@ const ContactPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ y: -5, scale: 1.02 }}
-                    className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 group transition-all duration-300"
+                    className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 group transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:scale-[1.02]">
                   >
                     <div className={`w-12 h-12 ${info.color} bg-white/5 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <info.icon className="w-6 h-6" />
@@ -423,7 +399,7 @@ const ContactPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 transition-all duration-300"
+                className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 transition-[border-color] duration-300">
               >
                 <div className="flex items-center mb-9">
                   <Handshake className="w-6 h-6 text-yellow-400 mr-3" />
@@ -436,9 +412,7 @@ const ContactPage = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-4 rounded-full transition-all duration-300 backdrop-blur-sm bg-gray-100 dark:bg-white/10 border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white group"
-                    whileHover={{ scale: 1.1, y: -3 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="p-4 rounded-full transition-[transform,background-color] duration-300 bg-gray-100 dark:bg-white/10 border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white group hover:scale-110 hover:-translate-y-1 active:scale-95"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
@@ -459,7 +433,7 @@ const ContactPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 transition-all duration-300"
+              className="bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/30 rounded-xl p-6 transition-[border-color] duration-300">
             >
               <div className="flex items-center mb-4">
                 <Clock className="w-6 h-6 text-blue-400 mr-3" />
