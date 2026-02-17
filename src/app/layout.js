@@ -9,7 +9,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Rhythm Pahwa",
+  title: "Portfolio | Rhythm Pahwa",
   description: "Portfolio of Rhythm Pahwa",
   author: "Rhythm Pahwa",
 };
