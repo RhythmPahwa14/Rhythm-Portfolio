@@ -5,15 +5,16 @@ import { useTheme } from '../context/ThemeContext';
 export default function AnimatedBackground() {
   const { isDark } = useTheme();
   const canvasRef = useRef(null);
-  const dotsRef = useRef([]);
   const animationFrameRef = useRef(null);
-  const isVisibleRef = useRef(true);
+  const isVisibleRef = useRef(false);
+  const shouldAnimateRef = useRef(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     // Function to set canvas size properly
     const setCanvasSize = () => {
@@ -26,11 +27,24 @@ export default function AnimatedBackground() {
     
     setCanvasSize();
 
+    if (prefersReducedMotion) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+
     // Intersection Observer to pause animation when not visible
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           isVisibleRef.current = entry.isIntersecting;
+          shouldAnimateRef.current = entry.isIntersecting && !document.hidden;
+
+          if (shouldAnimateRef.current && !animationFrameRef.current) {
+            animationFrameRef.current = requestAnimationFrame(animate);
+          } else if (!shouldAnimateRef.current && animationFrameRef.current) {
+            cancelAnimationFrame(animationFrameRef.current);
+            animationFrameRef.current = null;
+          }
         });
       },
       { threshold: 0.1 }
@@ -69,11 +83,18 @@ export default function AnimatedBackground() {
       });
     }
 
-    dotsRef.current = dots;
 
-    const animate = () => {
-      // Only animate if visible
-      if (isVisibleRef.current) {
+    let lastFrameTime = 0;
+    const targetFrameInterval = 1000 / 30;
+
+    function animate(timestamp) {
+      if (!shouldAnimateRef.current) {
+        animationFrameRef.current = null;
+        return;
+      }
+
+      if (timestamp - lastFrameTime >= targetFrameInterval) {
+        lastFrameTime = timestamp;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Update and draw dots
@@ -113,9 +134,20 @@ export default function AnimatedBackground() {
       }
 
       animationFrameRef.current = requestAnimationFrame(animate);
+    }
+
+    const handleVisibilityChange = () => {
+      shouldAnimateRef.current = isVisibleRef.current && !document.hidden;
+
+      if (shouldAnimateRef.current && !animationFrameRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+      } else if (!shouldAnimateRef.current && animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
     };
 
-    animate();
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     const handleResize = () => {
       setCanvasSize();
@@ -140,9 +172,11 @@ export default function AnimatedBackground() {
     
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       observer.disconnect();
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
       }
     };
   }, [isDark]);

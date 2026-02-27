@@ -8,8 +8,9 @@ import '../styles/Hero.css';
 
 export default function Hero() {
   const canvasRef = useRef(null);
-  const dotsRef = useRef([]);
   const animationFrameRef = useRef(null);
+  const shouldAnimateRef = useRef(false);
+  const isVisibleRef = useRef(false);
   const [typedText, setTypedText] = useState('');
 
   useEffect(() => {
@@ -28,6 +29,12 @@ export default function Hero() {
     };
     
     setCanvasSize();
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
 
     // Create dots
     const numDots = 22; // Reduced for better performance
@@ -57,10 +64,18 @@ export default function Hero() {
       });
     }
 
-    dotsRef.current = dots;
+    let lastFrameTime = 0;
+    const targetFrameInterval = 1000 / 30;
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function animate(timestamp) {
+      if (!shouldAnimateRef.current) {
+        animationFrameRef.current = null;
+        return;
+      }
+
+      if (timestamp - lastFrameTime >= targetFrameInterval) {
+        lastFrameTime = timestamp;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Update and draw dots
       dots.forEach((dot, i) => {
@@ -98,10 +113,40 @@ export default function Hero() {
         ctx.closePath();
       });
 
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
+      }
 
-    animate();
+      animationFrameRef.current = requestAnimationFrame(animate);
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisibleRef.current = entry.isIntersecting;
+          shouldAnimateRef.current = entry.isIntersecting && !document.hidden;
+
+          if (shouldAnimateRef.current && !animationFrameRef.current) {
+            animationFrameRef.current = requestAnimationFrame(animate);
+          } else if (!shouldAnimateRef.current && animationFrameRef.current) {
+            cancelAnimationFrame(animationFrameRef.current);
+            animationFrameRef.current = null;
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(canvas);
+
+    const handleVisibilityChange = () => {
+      shouldAnimateRef.current = isVisibleRef.current && !document.hidden;
+
+      if (shouldAnimateRef.current && !animationFrameRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+      } else if (!shouldAnimateRef.current && animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+    };
 
     const handleResize = () => {
       setCanvasSize();
@@ -123,11 +168,15 @@ export default function Hero() {
     };
 
     window.addEventListener('resize', handleResize);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      observer.disconnect();
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
       }
     };
   }, []);
@@ -139,43 +188,21 @@ export default function Hero() {
       "I'm a Full Stack Developer."
     ];
     
-    let lineIndex = 0;
+    const completeText = `${lines[0]}\n${lines[1]}`;
     let charIndex = 0;
-    let isDeleting = false;
-    let isPaused = false;
-    
-    const timer = setInterval(() => {
-      if (isPaused) return;
-      
-      const currentLine = lines[lineIndex];
-      
-      if (!isDeleting) {
-        // Typing
-        if (charIndex < currentLine.length) {
-          setTypedText(currentLine.slice(0, charIndex + 1));
-          charIndex++;
-        } else {
-          // Finished typing, pause then start deleting
-          isPaused = true;
-          setTimeout(() => {
-            isPaused = false;
-            isDeleting = true;
-          }, 1500);
-        }
-      } else {
-        // Deleting
-        if (charIndex > 0) {
-          setTypedText(currentLine.slice(0, charIndex - 1));
-          charIndex--;
-        } else {
-          // Finished deleting, move to next line
-          isDeleting = false;
-          lineIndex = (lineIndex + 1) % lines.length;
-        }
-      }
-    }, isDeleting ? 50 : 100);
+    let timeoutId;
 
-    return () => clearInterval(timer);
+    const typeNextCharacter = () => {
+      if (charIndex <= completeText.length) {
+        setTypedText(completeText.slice(0, charIndex));
+        charIndex += 1;
+        timeoutId = setTimeout(typeNextCharacter, 70);
+      }
+    };
+
+    typeNextCharacter();
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const scrollToSection = (sectionId) => {

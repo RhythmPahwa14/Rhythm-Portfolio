@@ -1,5 +1,5 @@
 'use client';
-import { useState, lazy, Suspense } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Hero from './components/Hero';
 import SplashScreen from './components/SplashScreen';
