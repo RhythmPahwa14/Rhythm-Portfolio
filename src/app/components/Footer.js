@@ -175,7 +175,7 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <span>© 2025 <a href="https://github.com/rhythmpahwa14" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors duration-300">Rhythm Pahwa</a>.</span>
+            <span>© 2026 <a href="https://github.com/rhythmpahwa14" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors duration-300">Rhythm Pahwa</a>.</span>
             <span className="flex items-center gap-1">
               Made with
               <motion.span
