@@ -169,7 +169,7 @@ export default function Page() {
             style={{ width: 'clamp(220px, 75vw, 340px)', height: 'clamp(250px, 85vw, 380px)' }}
           >
             <img
-              src="/Rhythm%27s%20Pfp.jpg"
+              src="/Rhythm's pfp.jpg"
               alt="Rhythm Pahwa"
               className="w-full h-full object-cover object-top"
               loading="eager"
@@ -211,7 +211,7 @@ export default function Page() {
             >
               <div className="relative h-full w-full">
                 <img
-                  src="/Rhythm%27s%20Pfp.jpg"
+                  src="/Rhythm's pfp.jpg"
                   alt="Rhythm Pahwa"
                   className="absolute inset-0 w-full h-full object-cover object-top"
                   loading="eager"
