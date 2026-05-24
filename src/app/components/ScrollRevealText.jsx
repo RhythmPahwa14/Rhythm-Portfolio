@@ -32,7 +32,7 @@ const ScrollRevealText = ({ text = '', className = '', style = {} }) => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top 85%',
-          toggleActions: 'play reverse play reverse',
+          toggleActions: 'play none none none',
         },
       });
     });
