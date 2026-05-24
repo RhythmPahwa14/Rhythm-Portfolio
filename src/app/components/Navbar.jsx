@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import AnimatedLink from './AnimatedLink';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,21 +28,21 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center gap-0.5 md:gap-2">
           {/* Left: Name */}
-          <motion.a
-            href="#home"
+          <motion.div
             initial={{ y: -24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.55, ease: 'easeOut' }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`backdrop-blur-2xl rounded-full px-2 md:px-6 py-1.5 md:py-2 transition-all duration-300 cursor-pointer ${
-              isScrolled
-                ? isDark ? 'bg-black/80 border border-blue-500/20 shadow-2xl' : 'bg-white/80 border border-blue-500/20 shadow-2xl'
-                : isDark ? 'bg-white/5 border border-white/10 shadow-lg' : 'bg-gray-800/10 border border-gray-800/10 shadow-lg'
-            }`}
           >
-            <span className={`font-bold text-sm md:text-xl ${isDark ? 'text-white' : 'text-gray-900'}`}>Rhythm</span>
-          </motion.a>
+            <AnimatedLink
+              href="#home"
+              text="Rhythm"
+              className={`backdrop-blur-2xl rounded-full px-2 md:px-6 py-1.5 md:py-2 transition-all duration-300 cursor-pointer ${
+                isScrolled
+                  ? isDark ? 'bg-black/80 border border-blue-500/20 shadow-2xl' : 'bg-white/80 border border-blue-500/20 shadow-2xl'
+                  : isDark ? 'bg-white/5 border border-white/10 shadow-lg' : 'bg-gray-800/10 border border-gray-800/10 shadow-lg'
+              } font-bold text-sm md:text-xl ${isDark ? 'text-white' : 'text-gray-900'}`}
+            />
+          </motion.div>
 
           {/* Center: pill-shaped nav */}
           <motion.div
@@ -55,20 +56,20 @@ const Navbar = () => {
             }`}
           >
             {navItems.map((item, i) => (
-              <motion.a
+              <motion.div
                 key={item.name}
-                href={item.href}
-                className={`font-medium text-[10px] md:text-sm px-1 md:px-3 py-1 rounded-2xl transition-all duration-200 hover:bg-blue-500/10 whitespace-nowrap ${
-                  isDark ? 'text-white/90 hover:text-blue-400' : 'text-gray-900/90 hover:text-blue-600'
-                }`}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.06 + 0.15 }}
               >
-                {item.name}
-              </motion.a>
+                <AnimatedLink
+                  href={item.href}
+                  text={item.name}
+                  className={`font-medium text-[10px] md:text-sm px-1 md:px-3 py-1 rounded-2xl transition-all duration-200 hover:bg-blue-500/10 whitespace-nowrap ${
+                    isDark ? 'text-white/90 hover:text-blue-400' : 'text-gray-900/90 hover:text-blue-600'
+                  }`}
+                />
+              </motion.div>
             ))}
           </motion.div>
 

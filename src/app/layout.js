@@ -1,32 +1,36 @@
-import { Montserrat } from "next/font/google";
+import { Sofia_Sans_Condensed, Spline_Sans_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./context/ThemeContext";
+import Preloader from './components/Preloader';
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const sofiaSansCondensed = Sofia_Sans_Condensed({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["700"],
+});
+
+const splineSansMono = Spline_Sans_Mono({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["300", "400"],
 });
 
 export const metadata = {
-  title: "Portfolio | Rhythm Pahwa",
-  description: "Portfolio of Rhythm Pahwa",
+  title: "RHYTHM PAHWA | Software Engineer",
+  description:
+    "Brutalist monochrome portfolio for Rhythm Pahwa, a software engineer focused on conversational AI, Dialogflow, and GCP.",
   author: "Rhythm Pahwa",
 };
 
-// Disable static optimization for client-side features
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} antialiased font-sans transition-colors duration-300`}
-        style={{ fontFamily: 'var(--font-montserrat)' }}
+        className={`${sofiaSansCondensed.variable} ${splineSansMono.variable} antialiased transition-colors duration-300`}
       >
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <Preloader />
+        {children}
       </body>
     </html>
   );

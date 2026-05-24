@@ -1,0 +1,387 @@
+﻿/* About Page Styles */
+
+.about-page {
+  background: #000;
+  color: #fff;
+  padding: 60px 40px;
+  font-family: var(--font-body, 'Spline Sans Mono');
+  margin-top: 20px;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.about-header {
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.about-title {
+  font-size: clamp(64px, 12vw, 120px);
+  font-family: var(--font-display, 'Sofia Sans Condensed');
+  font-weight: 700;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #fff 0%, #a8a8a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-subtitle {
+  font-size: 18px;
+  color: #888;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Bio Section */
+.bio-section {
+  margin-bottom: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.bio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.bio-intro h2 {
+  font-size: 48px;
+  font-family: var(--font-display, 'Sofia Sans Condensed');
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.intro-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #bbb;
+  letter-spacing: 0.5px;
+}
+
+/* Role Highlight */
+.role-highlight {
+  border-left: 3px solid #666;
+  padding-left: 30px;
+  position: relative;
+}
+
+.role-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.role-text {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #fff;
+  line-height: 1.6;
+}
+
+.role-text .highlight {
+  color: #00ff88;
+  font-weight: 700;
+}
+
+.role-description {
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+/* Quote Section */
+.quote-section {
+  margin-bottom: 80px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  padding: 60px 50px;
+  border: 1px solid #333;
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-section::before {
+  content: '"';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 100px;
+  opacity: 0.1;
+  font-family: serif;
+}
+
+.quote-content {
+  position: relative;
+  z-index: 1;
+}
+
+.quote-text {
+  font-size: 28px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+.quote-author {
+  font-size: 14px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* What Drives Me Section */
+.drives-section {
+  margin-bottom: 80px;
+}
+
+.drives-section h3 {
+  font-size: 36px;
+  font-family: var(--font-display, 'Sofia Sans Condensed');
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+}
+
+.drives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.drive-card {
+  background: #111;
+  border: 1px solid #333;
+  padding: 40px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.drive-card:hover {
+  border-color: #00ff88;
+  background: #1a1a1a;
+  transform: translateY(-5px);
+}
+
+.drive-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: #00ff88;
+  transition: width 0.3s ease;
+}
+
+.drive-card:hover::before {
+  width: 100%;
+}
+
+.drive-icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 20px;
+  color: #00ff88;
+}
+
+.drive-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.drive-card p {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.6;
+}
+
+/* Tech Stack Section */
+.tech-section {
+  margin-bottom: 80px;
+}
+
+.tech-section h3 {
+  font-size: 36px;
+  font-family: var(--font-display, 'Sofia Sans Condensed');
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.tech-category h4 {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  color: #00ff88;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+}
+
+.tech-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tech-category li {
+  font-size: 14px;
+  padding: 8px 0;
+  color: #bbb;
+  position: relative;
+  padding-left: 15px;
+  transition: color 0.3s ease;
+}
+
+.tech-category li:hover {
+  color: #00ff88;
+}
+
+.tech-category li::before {
+  content: 'â–¸';
+  position: absolute;
+  left: 0;
+  color: #00ff88;
+}
+
+/* CTA Section */
+.about-cta {
+  text-align: center;
+  padding: 60px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  border: 1px solid #333;
+  margin-top: 60px;
+}
+
+.about-cta h3 {
+  font-size: 32px;
+  font-family: var(--font-display, 'Sofia Sans Condensed');
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.about-cta p {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 40px;
+}
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 35px;
+  border: 2px solid #00ff88;
+  color: #00ff88;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.cta-link:hover {
+  background: #00ff88;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-page {
+    padding: 40px 20px;
+  }
+
+  .about-title {
+    font-size: 48px;
+  }
+
+  .bio-section {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .bio-intro h2 {
+    font-size: 32px;
+  }
+
+  .quote-text {
+    font-size: 20px;
+  }
+
+  .drives-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-header {
+    margin-bottom: 60px;
+  }
+
+  .about-cta {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page {
+    padding: 30px 15px;
+  }
+
+  .about-title {
+    font-size: 36px;
+  }
+
+  .bio-intro h2 {
+    font-size: 24px;
+  }
+
+  .quote-text {
+    font-size: 16px;
+  }
+
+  .drives-section h3,
+  .tech-section h3,
+  .about-cta h3 {
+    font-size: 24px;
+  }
+}
+
+.typed-cursor { font-weight: 200 !important; color: white; }

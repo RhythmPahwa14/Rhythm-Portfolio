@@ -1,0 +1,24 @@
+.textWrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.original,
+.clone {
+  display: block;
+  white-space: nowrap;
+}
+
+.clone {
+  position: absolute;
+  left: 0;
+  top: 100%;
+}
+
+.original span,
+.clone span {
+  display: inline-block;
+  will-change: transform;
+}

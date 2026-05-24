@@ -1,0 +1,311 @@
+/* ── Horizontal Accordion ── */
+
+.projects-accordion {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 70vh;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+
+/* ── Each Panel ── */
+.accordion-panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  border-right: 2px solid #000;
+  background: #fff;
+  cursor: pointer;
+  transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.35s ease;
+  overflow: hidden;
+}
+
+.accordion-panel:last-child {
+  border-right: none;
+}
+
+.accordion-panel:hover {
+  background: #fff;
+}
+
+/* When a panel is expanded, it takes up much more space */
+.accordion-panel--expanded {
+  flex: 5 1 0;
+}
+
+/* When any panel is expanded, non-expanded panels shrink */
+.projects-accordion:has(.accordion-panel--expanded) .accordion-panel:not(.accordion-panel--expanded) {
+  flex: 0.5 1 0;
+}
+
+/* ── Collapsed State (vertical text strip) ── */
+.accordion-collapsed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 2rem 0.75rem;
+  gap: 1.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.accordion-panel--expanded .accordion-collapsed {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.accordion-id {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.accordion-title {
+  font-family: var(--font-display, 'Sofia Sans Condensed'), sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #000;
+  word-break: break-word;
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* ── Expanded State (horizontal layout) ── */
+.accordion-expanded {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem 2.5rem;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeInContent 0.4s ease 0.15s forwards;
+}
+
+.accordion-panel--expanded .accordion-expanded {
+  display: flex;
+}
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Top header row: ID left, // TITLE right */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.accordion-header-id {
+  font-family: var(--font-display, 'Sofia Sans Condensed'), sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #000;
+}
+
+.accordion-header-title {
+  font-family: var(--font-display, 'Sofia Sans Condensed'), sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #000;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Middle body: tags left, image right */
+.accordion-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  flex: 1;
+  align-items: start;
+  min-height: 0;
+}
+
+.accordion-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-top: 0.5rem;
+}
+
+.accordion-tag {
+  font-family: var(--font-body), monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #000;
+}
+
+/* Laptop frame */
+.accordion-image-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+  justify-self: end;
+}
+
+.laptop-screen {
+  width: 100%;
+  background: #f9f9f7;
+  border: 2px solid #d0d0cc;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 8;
+}
+
+.laptop-screen-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+  display: block;
+}
+
+.laptop-base {
+  width: 115%;
+  max-width: 500px;
+  height: 10px;
+  background: linear-gradient(to bottom, #d4d4d0, #c0c0bb);
+  border-radius: 0 0 6px 6px;
+  position: relative;
+}
+
+.laptop-base::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 4px;
+  background: #b8b8b3;
+  border-radius: 2px;
+}
+
+/* GitHub / Live Demo links */
+.accordion-links {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.25rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.accordion-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body), monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.accordion-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #000;
+  transition: width 0.3s ease;
+}
+
+.accordion-link:hover::after {
+  width: 100%;
+}
+
+.accordion-link:hover {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Description */
+.accordion-desc {
+  font-family: var(--font-body), monospace;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(0, 0, 0, 0.55);
+  max-width: 60ch;
+  flex-shrink: 0;
+}
+
+/* ── Mobile: stack vertically ── */
+@media (max-width: 768px) {
+  .projects-accordion {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .accordion-panel {
+    border-right: none;
+    border-bottom: 2px solid #000;
+    min-height: 80px;
+  }
+
+  .accordion-panel:last-child {
+    border-bottom: none;
+  }
+
+  .accordion-collapsed {
+    flex-direction: row;
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .accordion-title {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+  }
+
+  .accordion-panel--expanded {
+    flex: none;
+  }
+
+  .projects-accordion:has(.accordion-panel--expanded) .accordion-panel:not(.accordion-panel--expanded) {
+    flex: none;
+  }
+
+  .accordion-expanded {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .accordion-body {
+    grid-template-columns: 1fr;
+  }
+
+  .accordion-image-wrap {
+    max-width: 100%;
+  }
+}

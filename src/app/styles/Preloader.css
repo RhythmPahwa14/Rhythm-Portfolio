@@ -1,0 +1,120 @@
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  overflow: hidden;
+}
+
+.preloader-shell {
+  position: relative;
+  width: clamp(280px, 80vw, 500px);
+  height: clamp(280px, 80vw, 500px);
+  display: grid;
+  place-items: center;
+}
+
+.preloader-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.preloader-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.preloader-ring {
+  transform-origin: 50% 50%;
+  animation: spin 35s linear infinite;
+}
+
+.preloader-ring--outer {
+  animation-duration: 35s;
+}
+
+.preloader-ring--inner {
+  animation-duration: 35s;
+}
+
+.preloader-text {
+  fill: #111;
+  font-family: Dosis, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.preloader-text--outer {
+  font-size: clamp(14px, 5vw, 24px);
+}
+
+.preloader-text--inner {
+  font-size: clamp(10px, 3.5vw, 14px);
+  letter-spacing: 0.16em;
+}
+
+.preloader-percent {
+  position: absolute;
+  bottom: clamp(-2.5rem, -8vw, -3.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  color: #111;
+  font: 700 clamp(1rem, 3vw, 1.25rem)/1 Dosis, sans-serif;
+  letter-spacing: 0.08em;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .preloader-shell {
+    width: clamp(240px, 75vw, 320px);
+    height: clamp(240px, 75vw, 320px);
+  }
+  
+  .preloader-text--outer {
+    font-size: 12px;
+  }
+  
+  .preloader-text--inner {
+    font-size: 8px;
+  }
+  
+  .preloader-percent {
+    font-size: 1rem;
+    bottom: -2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .preloader-shell {
+    width: min(90vw, 22rem);
+    height: min(90vw, 22rem);
+  }
+
+  .preloader-text--outer {
+    font-size: 16px;
+  }
+
+  .preloader-text--inner {
+    font-size: 11px;
+  }
+
+  .preloader-percent {
+    bottom: -2.25rem;
+  }
+}
