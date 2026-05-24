@@ -52,10 +52,10 @@ const SkillsSection = () => {
   };
 
   return (
-    <section id="skills" className="relative z-30 px-5 sm:px-8 lg:px-12 py-16 sm:py-20 lg:py-24 border-t border-black/10">
+    <section id="skills" className="relative z-30 px-5 sm:px-8 lg:px-12 py-16 sm:py-20 lg:py-24">
       {/* Section Header */}
       <motion.div
-        className="flex flex-col items-center text-center gap-3 mb-16"
+        className="flex flex-col items-center text-center gap-3 mb-12 sm:mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -63,7 +63,7 @@ const SkillsSection = () => {
       >
         <ScrollRevealText
           text="SKILLS & TECHNOLOGIES"
-          className="text-[clamp(48px,8vw,100px)] font-black uppercase tracking-tighter leading-none text-black"
+          className="text-[clamp(42px,7vw,100px)] font-black uppercase tracking-tighter leading-none text-black"
           style={{ fontFamily: "var(--font-display, 'Sofia Sans Condensed')" }}
         />
       </motion.div>
@@ -84,17 +84,17 @@ const SkillsSection = () => {
           >
             {/* Category Label */}
             <div className="flex items-center justify-center">
-              <h3 className="text-[0.95rem] sm:text-[1.05rem] font-bold uppercase tracking-[0.16em] text-black whitespace-nowrap">
+              <h3 className="text-[0.85rem] sm:text-[1.05rem] font-bold uppercase tracking-[0.16em] text-black whitespace-nowrap">
                 / {skillGroup.category}
               </h3>
             </div>
 
             {/* Skills List */}
-            <div className="flex flex-wrap gap-2.5 sm:gap-3 items-center justify-center">
+            <div className="flex flex-wrap gap-2 sm:gap-3 items-center justify-center">
               {skillGroup.skills.map((skill, index) => (
                 <motion.span
                   key={skill}
-                  className="text-[0.85rem] sm:text-[0.95rem] font-medium uppercase tracking-[0.08em] text-black/80 hover:text-black transition-colors duration-300 cursor-pointer"
+                  className="text-[0.78rem] sm:text-[0.95rem] font-medium uppercase tracking-[0.08em] text-black/80 hover:text-black transition-colors duration-300 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
                 >

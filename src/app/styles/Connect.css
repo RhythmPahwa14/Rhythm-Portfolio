@@ -118,7 +118,6 @@
    ══════════════════════════════════════════════ */
 
 .site-footer {
-  border-top: 2px solid #000;
   background: #fff;
   padding: 4rem 0 2rem;
 }
@@ -274,13 +273,26 @@
   .footer-row {
     flex-direction: column;
     gap: 1.5rem;
+    align-items: center;
+    text-align: center;
   }
 
   .footer-info {
     gap: 1rem;
+    justify-content: center;
+  }
+
+  .footer-links {
+    justify-content: center;
   }
 
   .footer-name {
     margin-bottom: 2rem;
+  }
+
+  .footer-copyright {
+    white-space: nowrap;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
   }
 }

@@ -45,7 +45,7 @@ const ScrollRevealText = ({ text = '', className = '', style = {} }) => {
 
   return (
     <div ref={containerRef} className={className} style={style}>
-      <span style={{ display: 'block', overflow: 'hidden', lineHeight: 'inherit', paddingBottom: '0.05em' }}>
+      <span style={{ display: 'block', overflow: 'hidden', lineHeight: '1.1', paddingTop: '0.1em', paddingRight: '0.12em', paddingBottom: '0.14em', paddingLeft: '0.12em' }}>
         {chars.map((char, i) => (
           <span
             key={i}

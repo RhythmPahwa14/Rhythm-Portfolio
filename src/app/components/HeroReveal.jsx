@@ -54,8 +54,11 @@ const HeroReveal = ({ text = '', className = '', style = {}, delay = 0.4 }) => {
         style={{
           display: 'block',
           overflow: 'hidden',
-          lineHeight: 'inherit',
-          paddingBottom: '0.05em',
+          lineHeight: '1.1',
+          paddingTop: '0.1em',
+          paddingRight: '0.12em',
+          paddingBottom: '0.14em',
+          paddingLeft: '0.12em',
         }}
       >
         {chars.map((char, i) => (

@@ -206,7 +206,7 @@ export default function Page() {
             </div>
 
             <div
-              className="absolute left-[58%] top-[36%] z-10 -translate-x-1/2 -translate-y-1/2 overflow-hidden"
+              className="absolute left-[58%] top-[42%] z-10 -translate-x-1/2 -translate-y-1/2 overflow-hidden"
               style={{ width: '400px', height: '450px' }}
             >
               <div className="relative h-full w-full">

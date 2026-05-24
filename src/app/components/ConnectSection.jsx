@@ -107,7 +107,10 @@ const ConnectSection = () => {
             </motion.div>
 
             <motion.button
-              type="submit"
+              type="button"
+              onClick={() => {
+                window.location.href = 'mailto:rhythmpahwa14@gmail.com';
+              }}
               className="form-submit group"
               variants={fadeUp}
               custom={3}
