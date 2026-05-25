@@ -19,8 +19,8 @@ const projectsData = [
   {
     id: '00-2',
     title: 'HELP-NEARBY',
-    technologies: ['React', 'JavaScript', 'Google Maps API', 'OpenCage Geocoding', 'Real-time'],
-    description: 'Help Nearby is a full-stack location-based React application that enables users to post and view help requests in real time. It integrates Google Maps API and OpenCage Geocoding to auto-detect and display human needs.',
+    technologies: [ "React.js","Node.js","Express.js","MongoDB","JWT Authentication"],
+    description: 'Help Nearby is a full-stack web platform that connects people in need with nearby volunteers. It features real-time help requests, interactive maps with geospatial queries, an offer-help system with contact sharing, and JWT-based authentication. Built using React, Node.js, Express.js, and MongoDB.',
     image: '/projects/help-nearby.png',
     githubLink: 'https://github.com/RhythmPahwa14/Help-Nearby',
     liveDemo: 'https://help-nearby.vercel.app/',
