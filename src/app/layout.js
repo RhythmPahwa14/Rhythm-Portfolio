@@ -19,6 +19,9 @@ export const metadata = {
   description:
     "Brutalist monochrome portfolio for Rhythm Pahwa, a software engineer focused on conversational AI, Dialogflow, and GCP.",
   author: "Rhythm Pahwa",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export const dynamic = "force-dynamic";
