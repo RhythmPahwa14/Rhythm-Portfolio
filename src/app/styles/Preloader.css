@@ -9,93 +9,122 @@
   overflow: hidden;
 }
 
-.preloader-shell {
+/* ── 3D spinning text cylinders ── */
+.loader3d-stage {
+  --r-outer: 190px;
+  --r-inner: 190px; /* same radius — the two cylinders are parallel, stacked */
+  --inner-offset: 78px; /* how far the lower (grey) cylinder sits below the black one */
   position: relative;
-  width: clamp(280px, 80vw, 500px);
-  height: clamp(280px, 80vw, 500px);
+  width: clamp(300px, 82vw, 500px);
+  height: clamp(300px, 82vw, 500px);
   display: grid;
   place-items: center;
+  perspective: 1000px;
 }
 
-.preloader-stage {
-  position: relative;
-  width: 100%;
-  height: 100%;
+/* The "world" holds both cylinders and gets the cursor tilt (set inline via JS). */
+.loader3d-world {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  transform: rotateZ(-8deg) rotateX(-14deg); /* resting tilt before the cursor moves */
 }
 
-.preloader-svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+/* Pushes the inner cylinder down so it sits below the big one (not concentric). */
+.loader3d-inner-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-style: preserve-3d;
+  transform: translateY(var(--inner-offset));
 }
 
-.preloader-ring {
-  transform-origin: 50% 50%;
-  animation: spin 35s linear infinite;
+.loader3d-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-.preloader-ring--outer {
-  animation-duration: 35s;
+.loader3d-ring--outer {
+  animation: loader3d-spin 18s linear infinite;
 }
 
-.preloader-ring--inner {
-  animation-duration: 35s;
+.loader3d-ring--inner {
+  animation: loader3d-spin 24s linear infinite;
 }
 
-.preloader-text {
-  fill: #111;
-  font-family: Dosis, sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+.loader3d-char {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* transform (rotateY + translateZ) is set inline per character */
+  transform-origin: center center;
+  backface-visibility: visible;
+  white-space: nowrap;
+  font-family: var(--font-display, 'Sofia Sans Condensed'), sans-serif;
   text-transform: uppercase;
+  color: #111;
 }
 
-/* font-size lives on the SVG <text> as a user-unit attribute so the ring text
-   scales together with the circle (identical on mobile and desktop). */
-.preloader-text--inner {
-  letter-spacing: 0.16em;
+.loader3d-char--outer {
+  font-weight: 800;
+  font-size: 34px;
+  letter-spacing: 0.01em;
 }
 
-.preloader-percent {
+.loader3d-char--inner {
+  font-weight: 700;
+  font-size: 25px; /* slightly smaller than the black one */
+  letter-spacing: 0.04em;
+  color: #9a9a9a; /* light greyish black */
+}
+
+@keyframes loader3d-spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.loader3d-percent {
   position: absolute;
   bottom: clamp(-2.5rem, -8vw, -3.5rem);
   left: 50%;
   transform: translateX(-50%);
   color: #111;
-  font: 700 clamp(1rem, 3vw, 1.25rem)/1 Dosis, sans-serif;
+  font: 700 clamp(1rem, 3vw, 1.25rem)/1 var(--font-body, monospace);
   letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Mobile adjustments */
+/* ── Mobile ── */
 @media (max-width: 640px) {
-  .preloader-shell {
-    width: clamp(240px, 75vw, 320px);
-    height: clamp(240px, 75vw, 320px);
+  .loader3d-stage {
+    --r-outer: 130px;
+    --r-inner: 130px;
+    --inner-offset: 54px;
+    width: clamp(250px, 86vw, 350px);
+    height: clamp(250px, 86vw, 350px);
   }
 
-  .preloader-percent {
-    font-size: 1rem;
-    bottom: -2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .preloader-shell {
-    width: min(90vw, 22rem);
-    height: min(90vw, 22rem);
+  .loader3d-char--outer {
+    font-size: 22px;
   }
 
-  .preloader-percent {
+  .loader3d-char--inner {
+    font-size: 17px;
+  }
+
+  .loader3d-percent {
     bottom: -2.25rem;
   }
 }
