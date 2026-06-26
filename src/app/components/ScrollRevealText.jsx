@@ -7,11 +7,45 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * ScrollRevealText — on scroll, each character drops in from above
- * and "sits" into place with a smooth easing.
- * Same animation style as HeroReveal but triggered by ScrollTrigger.
+ * Wire up (once for the whole page) automatic ScrollTrigger position recalculation.
+ * Content above a heading can change height AFTER mount — fonts swapping in, images
+ * loading, and the About typing animation growing — which shifts every trigger below.
+ * Refreshing on those events keeps each heading's trigger position correct.
  */
-const ScrollRevealText = ({ text = '', className = '', style = {} }) => {
+let refreshWired = false;
+function wireGlobalScrollRefresh() {
+  if (refreshWired || typeof window === 'undefined') return;
+  refreshWired = true;
+
+  const refresh = () => ScrollTrigger.refresh();
+
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
+  window.addEventListener('load', refresh);
+
+  // Catch layout shifts from late content with a few spaced refreshes (not a
+  // per-frame watcher — that would jank the About typing animation).
+  [800, 2000, 4000, 7000, 11000].forEach((ms) => window.setTimeout(refresh, ms));
+}
+
+/**
+ * ScrollRevealText — per-letter drop-in reveal.
+ *
+ * Both desktop and mobile scrub the cascade to scroll position — letters drop down
+ * as you scroll into the heading and retract as you scroll back up (1:1 with scroll).
+ * The only difference: on mobile the cascade finishes EARLY (near the bottom of the
+ * screen) at a point every heading can always reach, so even bottom-anchored headings
+ * like the footer land completely instead of freezing mid-reveal.
+ *
+ * `stagger` = delay between letters. `start` / `end` = ScrollTrigger range (desktop).
+ */
+const ScrollRevealText = ({
+  text = '',
+  className = '',
+  style = {},
+  stagger = 0.04,
+  start = 'top bottom',
+  end = 'top 25%',
+}) => {
   const containerRef = useRef(null);
   const charsRef = useRef([]);
   const chars = text.split('');
@@ -20,32 +54,61 @@ const ScrollRevealText = ({ text = '', className = '', style = {} }) => {
     const validRefs = charsRef.current.filter(Boolean);
     if (!containerRef.current || validRefs.length === 0) return;
 
-    const ctx = gsap.context(() => {
-      gsap.set(validRefs, { yPercent: -120, opacity: 0 });
+    wireGlobalScrollRefresh();
 
-      gsap.to(validRefs, {
-        yPercent: 0,
-        opacity: 1,
-        duration: 0.9,
-        ease: 'power4.out',
-        stagger: 0.025,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        },
-      });
-    });
+    const isMobile =
+      typeof window !== 'undefined' && window.matchMedia('(max-width: 639px)').matches;
+
+    const ctx = gsap.context(() => {
+      if (isMobile) {
+        // Mobile: scrub like desktop, but finish early (near the bottom of the
+        // screen) so the cascade always completes — even for the footer, which
+        // can't be scrolled far enough to reach the desktop end point.
+        gsap.fromTo(
+          validRefs,
+          { yPercent: -115 },
+          {
+            yPercent: 0,
+            ease: 'none',
+            stagger: { each: Math.min(stagger, 0.06) },
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top bottom',
+              end: 'top 58%',
+              scrub: true,
+            },
+          }
+        );
+      } else {
+        // Desktop: scrub the cascade to scroll position (reverses on scroll up).
+        gsap.fromTo(
+          validRefs,
+          { yPercent: -115 },
+          {
+            yPercent: 0,
+            ease: 'none',
+            stagger: { each: stagger },
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start,
+              end,
+              scrub: true,
+            },
+          }
+        );
+      }
+    }, containerRef);
 
     return () => ctx.revert();
-  }, [text]);
+  }, [text, stagger, start, end]);
 
   // Reset refs array on each render
   charsRef.current = [];
 
   return (
     <div ref={containerRef} className={className} style={style}>
-      <span style={{ display: 'block', overflow: 'hidden', lineHeight: '1.1', paddingTop: '0.1em', paddingRight: '0.12em', paddingBottom: '0.14em', paddingLeft: '0.12em' }}>
+      {/* Fixed mask — its top edge is the line the letters drop down from. */}
+      <span style={{ display: 'block', overflow: 'hidden', lineHeight: '1.1', paddingTop: '0.06em', paddingRight: '0.12em', paddingBottom: '0.14em', paddingLeft: '0.12em' }}>
         {chars.map((char, i) => (
           <span
             key={i}
@@ -53,7 +116,7 @@ const ScrollRevealText = ({ text = '', className = '', style = {} }) => {
             style={{
               display: 'inline-block',
               whiteSpace: char === ' ' ? 'pre' : 'normal',
-              willChange: 'transform, opacity',
+              willChange: 'transform',
             }}
           >
             {char}

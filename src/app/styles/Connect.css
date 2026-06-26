@@ -27,7 +27,7 @@
 
 /* Big heading */
 .connect-heading {
-  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-size: clamp(2.5rem, 8vw, 7.5rem);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.04em;
@@ -35,6 +35,12 @@
   text-align: center;
   color: #000;
   white-space: nowrap;
+  /* Break out of the 900px form column so the long word ("GREAT COLLABORATION")
+     has room to grow without being clipped by the reveal mask. */
+  width: 92vw;
+  max-width: 1280px;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .connect-heading-sub {
@@ -294,5 +300,12 @@
     white-space: nowrap;
     font-size: 0.62rem;
     letter-spacing: 0.14em;
+    margin-top: 2rem;
+  }
+
+  /* Extra space below the copyright so the big footer name has enough scroll room
+     to finish dropping into place on mobile. */
+  .site-footer {
+    padding-bottom: 7rem;
   }
 }

@@ -68,7 +68,7 @@ const ProjectsSection = () => {
       >
         <ScrollRevealText
           text="PROJECTS"
-          className="text-[clamp(48px,8vw,100px)] font-black uppercase tracking-tighter leading-none text-black"
+          className="text-[clamp(34px,8vw,140px)] font-black uppercase tracking-tighter leading-none text-black whitespace-nowrap"
           style={{ fontFamily: "var(--font-display, 'Sofia Sans Condensed')" }}
         />
       </motion.div>

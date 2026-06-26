@@ -63,7 +63,7 @@ const SkillsSection = () => {
       >
         <ScrollRevealText
           text="SKILLS & TECHNOLOGIES"
-          className="text-[clamp(42px,7vw,100px)] font-black uppercase tracking-tighter leading-none text-black"
+          className="text-[clamp(34px,8vw,140px)] font-black uppercase tracking-tighter leading-none text-black whitespace-nowrap"
           style={{ fontFamily: "var(--font-display, 'Sofia Sans Condensed')" }}
         />
       </motion.div>

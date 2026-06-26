@@ -134,6 +134,7 @@ const ConnectSection = () => {
           {/* ── Big Name ── */}
           <ScrollRevealText
             text="RHYTHM PAHWA"
+            end="top 75%"
             className="footer-name"
             style={{ fontFamily: "var(--font-display, 'Sofia Sans Condensed')" }}
           />

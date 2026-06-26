@@ -17,23 +17,14 @@ export default function PremiumTypingText({ paragraphs }) {
   }, [paragraphs]);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || currentIndex >= totalLength) return;
 
-    let timer;
-    const step = () => {
-      setCurrentIndex((prev) => {
-        if (prev < totalLength) {
-          timer = setTimeout(step, 15); // Custom typing speed
-          return prev + 1;
-        }
-        return prev;
-      });
-    };
-
-    timer = setTimeout(step, 15);
-
+    // Advance one character at a time. The timer lives in the effect (not inside
+    // the setState updater) so the updater stays pure — otherwise React StrictMode's
+    // double-invoke in dev schedules duplicate timers and breaks typing on localhost.
+    const timer = setTimeout(() => setCurrentIndex((i) => i + 1), 15);
     return () => clearTimeout(timer);
-  }, [isInView, totalLength]);
+  }, [isInView, currentIndex, totalLength]);
 
   // Render paragraphs up to currentIndex
   const renderedParagraphs = useMemo(() => {

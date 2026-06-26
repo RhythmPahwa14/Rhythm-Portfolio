@@ -39,9 +39,10 @@ export default function Preloader({ duration = 3200 }) {
   }, [duration]);
 
   const outerText = "An engineer exploring the rhythm of life through code.";
-  const innerText = "CONVERSATIONAL AI • DIALOGFLOW • FULL-STACK ENGINEERING • MACHINE LEARNING • CLOUD SYSTEMS • COMPUTER VISION • AUTOMATION";
-  const outerRingText = repeatText(outerText, 3);
-  const innerRingText = repeatText(innerText, 3);
+  const innerText = "CONVERSATIONAL AI • DIALOGFLOW • GCP • MACHINE LEARNING • AI AUTOMATION";
+  // Show each line once around the ring (no repetition) so it never overlaps itself.
+  const outerRingText = outerText;
+  const innerRingText = innerText;
 
   return (
     <AnimatePresence>
@@ -73,7 +74,8 @@ export default function Preloader({ duration = 3200 }) {
                 </defs>
 
                 <g className="preloader-ring preloader-ring--outer">
-                  <text className="preloader-text preloader-text--outer">
+                  {/* font-size in SVG user units so the text scales with the circle */}
+                  <text className="preloader-text preloader-text--outer" fontSize="24">
                     <textPath href="#preloader-outer-path" startOffset="50%" textAnchor="middle">
                       {outerRingText}
                     </textPath>
@@ -81,7 +83,7 @@ export default function Preloader({ duration = 3200 }) {
                 </g>
 
                 <g className="preloader-ring preloader-ring--inner">
-                  <text className="preloader-text preloader-text--inner">
+                  <text className="preloader-text preloader-text--inner" fontSize="12">
                     <textPath href="#preloader-inner-path" startOffset="50%" textAnchor="middle">
                       {innerRingText}
                     </textPath>

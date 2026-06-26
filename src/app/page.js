@@ -142,7 +142,7 @@ export default function Page() {
       </div>
 
       {/* ── HERO TEXT — full bleed, no horizontal padding ── */}
-      <section id="top" className="relative pt-6 lg:pt-8">
+      <section id="top" className="relative pt-1 lg:pt-2">
         <div className="relative px-5 sm:px-8 lg:px-12 pb-16">
           {/* Mobile: Stack layout */}
           <div className="md:hidden mb-6">
@@ -150,14 +150,14 @@ export default function Page() {
               text="SOFTWARE ENGINEER"
               className="text-center text-[2rem] sm:text-[3rem] font-bold uppercase text-black leading-tight mb-2"
               style={{ fontFamily: "var(--font-display, 'Sofia Sans Condensed')" }}
-              delay={0.7}
+              delay={3.6}
             />
             <motion.p
               className="text-center text-[0.9rem] sm:text-[1rem] font-bold uppercase text-black"
               style={{ letterSpacing: '0.18em' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: isReady ? 1 : 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 1.2 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 3.2 }}
             >
               B A S E D &nbsp; I N &nbsp; I N D I A
             </motion.p>
@@ -183,43 +183,47 @@ export default function Page() {
             <p>/&nbsp;FULL-STACK&nbsp;ENGINEERING</p>
           </div>
 
-          {/* Desktop: Absolute positioning layout */}
-          <div className="hidden md:block relative min-h-[820px] lg:min-h-[900px] overflow-visible pt-1">
-            <div
-              className="hero-text-wrapper absolute right-0 top-0 z-20 pr-6 lg:pr-10"
-              style={{ top: '-6%' }}
+          {/* Desktop: full-width heading on top, photo centered, skills lower-left, location upper-right */}
+          <div
+            className="hidden md:block relative w-full overflow-hidden"
+            style={{ height: 'clamp(440px, 52vw, 840px)' }}
+          >
+            {/* Full-width heading — drops in from above on load */}
+            <HeroReveal
+              text="SOFTWARE ENGINEER"
+              className="hero-heading-wide absolute left-0 top-0 z-10"
+              delay={3.6}
+            />
+
+            {/* BASED IN INDIA — right side, tucked just under the heading */}
+            <motion.p
+              className="absolute right-0 z-20 text-right font-bold uppercase text-black text-[clamp(0.7rem,1vw,1.05rem)]"
+              style={{ top: '14vw', letterSpacing: '0.3em' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isReady ? 1 : 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 3.2 }}
             >
-              <HeroReveal
-                text="SOFTWARE ENGINEER"
-                className="hero-heading hero-heading--refined mx-0 px-0"
-                delay={0.7}
+              B A S E D &nbsp; I N &nbsp; I N D I A
+            </motion.p>
+
+            {/* Centered portrait */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 z-0 overflow-hidden"
+              style={{ top: '14vw', width: 'clamp(230px, 25vw, 410px)', height: 'clamp(300px, 31vw, 500px)' }}
+            >
+              <img
+                src="/Rhythm's pfp.jpg"
+                alt="Rhythm Pahwa"
+                className="w-full h-full object-cover object-top"
+                loading="eager"
               />
-              <motion.p
-                className="mt-2 text-right text-[1rem] font-bold uppercase text-black"
-                style={{ letterSpacing: '0.18em' }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isReady ? 1 : 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: 1.2 }}
-              >
-                B A S E D &nbsp; I N &nbsp; I N D I A
-              </motion.p>
             </div>
 
+            {/* Skills — lower-left */}
             <div
-              className="absolute left-[58%] top-[42%] z-10 -translate-x-1/2 -translate-y-1/2 overflow-hidden"
-              style={{ width: '400px', height: '450px' }}
+              className="absolute left-[16%] z-20 text-black font-bold leading-[1.3] text-[clamp(0.85rem,1.2vw,1.2rem)]"
+              style={{ bottom: '13%' }}
             >
-              <div className="relative h-full w-full">
-                <img
-                  src="/Rhythm's pfp.jpg"
-                  alt="Rhythm Pahwa"
-                  className="absolute inset-0 w-full h-full object-cover object-top"
-                  loading="eager"
-                />
-              </div>
-            </div>
-
-            <div className="absolute left-[26%] top-[57%] z-20 text-black font-bold text-[1rem] leading-[1.05]">
               <p className="whitespace-nowrap">/ CONVERSATIONAL SYSTEMS</p>
               <p className="whitespace-nowrap">/ GOOGLE CLOUD &amp; AI</p>
               <p className="whitespace-nowrap">/ FULL-STACK ENGINEERING</p>

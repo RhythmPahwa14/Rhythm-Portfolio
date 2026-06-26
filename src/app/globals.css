@@ -175,6 +175,23 @@ canvas {
   text-align: right;
 }
 
+/* Full-width hero heading (CREATIVE DESIGNER style) — spans the row on one line */
+.hero-heading-wide {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(3.5rem, 13vw, 20rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  word-spacing: 0;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  text-align: right;
+}
+
 @media (max-width: 480px) {
   .hero-heading--refined {
     font-size: clamp(4rem, 22vw, 7.5rem);

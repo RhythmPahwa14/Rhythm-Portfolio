@@ -67,7 +67,7 @@ const AboutSection = () => {
   return (
     <>
       <motion.div 
-        className="relative z-30 px-5 sm:px-8 lg:px-12 pt-4 sm:pt-0 pb-10 flex flex-col items-center text-center -mt-20 sm:-mt-40 lg:-mt-72"
+        className="relative z-30 px-5 sm:px-8 lg:px-12 pt-4 sm:pt-0 pb-10 flex flex-col items-center text-center mt-0 sm:-mt-4 lg:-mt-8"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -75,7 +75,7 @@ const AboutSection = () => {
       >
         <ScrollRevealText
           text="ABOUT ME"
-          className="text-[clamp(48px,8vw,100px)] font-black uppercase tracking-tighter leading-none text-black mb-2"
+          className="text-[clamp(34px,8vw,140px)] font-black uppercase tracking-tighter leading-none text-black mb-2 whitespace-nowrap"
           style={{ fontFamily: "var(--font-display, 'Sofia Sans Condensed')" }}
         />
         <p className="text-black/60 font-medium uppercase tracking-[0.1em] text-sm sm:text-base">

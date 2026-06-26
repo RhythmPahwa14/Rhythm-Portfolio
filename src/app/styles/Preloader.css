@@ -50,12 +50,9 @@
   text-transform: uppercase;
 }
 
-.preloader-text--outer {
-  font-size: clamp(14px, 5vw, 24px);
-}
-
+/* font-size lives on the SVG <text> as a user-unit attribute so the ring text
+   scales together with the circle (identical on mobile and desktop). */
 .preloader-text--inner {
-  font-size: clamp(10px, 3.5vw, 14px);
   letter-spacing: 0.16em;
 }
 
@@ -85,15 +82,7 @@
     width: clamp(240px, 75vw, 320px);
     height: clamp(240px, 75vw, 320px);
   }
-  
-  .preloader-text--outer {
-    font-size: 12px;
-  }
-  
-  .preloader-text--inner {
-    font-size: 8px;
-  }
-  
+
   .preloader-percent {
     font-size: 1rem;
     bottom: -2rem;
@@ -104,14 +93,6 @@
   .preloader-shell {
     width: min(90vw, 22rem);
     height: min(90vw, 22rem);
-  }
-
-  .preloader-text--outer {
-    font-size: 16px;
-  }
-
-  .preloader-text--inner {
-    font-size: 11px;
   }
 
   .preloader-percent {
