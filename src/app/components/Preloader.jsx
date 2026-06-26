@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import "../styles/Preloader.css";
 
-export default function Preloader({ duration = 4400 }) {
+export default function Preloader({ duration = 6000 }) {
   const [percent, setPercent] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const worldRef = useRef(null);

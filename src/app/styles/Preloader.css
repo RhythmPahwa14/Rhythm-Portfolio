@@ -53,11 +53,11 @@
 }
 
 .loader3d-ring--outer {
-  animation: loader3d-spin 18s linear infinite;
+  animation: loader3d-spin 30s linear infinite;
 }
 
 .loader3d-ring--inner {
-  animation: loader3d-spin 24s linear infinite;
+  animation: loader3d-spin 38s linear infinite;
 }
 
 .loader3d-char {

@@ -150,14 +150,14 @@ export default function Page() {
               text="SOFTWARE ENGINEER"
               className="text-center text-[2rem] sm:text-[3rem] font-bold uppercase text-black leading-tight mb-2"
               style={{ fontFamily: "var(--font-display, 'Sofia Sans Condensed')" }}
-              delay={4.8}
+              delay={6.4}
             />
             <motion.p
               className="text-center text-[0.9rem] sm:text-[1rem] font-bold uppercase text-black"
               style={{ letterSpacing: '0.18em' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: isReady ? 1 : 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 4.4 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 6.0 }}
             >
               B A S E D &nbsp; I N &nbsp; I N D I A
             </motion.p>
@@ -192,7 +192,7 @@ export default function Page() {
             <HeroReveal
               text="SOFTWARE ENGINEER"
               className="hero-heading-wide absolute left-0 top-0 z-10"
-              delay={4.8}
+              delay={6.4}
             />
 
             {/* BASED IN INDIA — right side, tucked just under the heading */}
@@ -201,7 +201,7 @@ export default function Page() {
               style={{ top: '14vw', letterSpacing: '0.3em' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: isReady ? 1 : 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 4.4 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 6.0 }}
             >
               B A S E D &nbsp; I N &nbsp; I N D I A
             </motion.p>
