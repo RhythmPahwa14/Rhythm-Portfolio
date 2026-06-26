@@ -3,6 +3,15 @@
 import { useEffect, useState, useRef, useMemo } from 'react';
 import { useInView } from 'framer-motion';
 
+const TEXT_CLASSES = 'tracking-[-0.01em] font-black uppercase text-left';
+const TEXT_STYLE = {
+  fontFamily: "var(--font-display, 'Sofia Sans Condensed')",
+  fontSize: 'clamp(24px, 4.5vw, 64px)',
+  lineHeight: '1.15',
+  wordBreak: 'break-word',
+  overflowWrap: 'break-word',
+};
+
 export default function PremiumTypingText({ paragraphs }) {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: '-10% 0px' });
@@ -26,12 +35,12 @@ export default function PremiumTypingText({ paragraphs }) {
     return () => clearTimeout(timer);
   }, [isInView, currentIndex, totalLength]);
 
-  // Render paragraphs up to currentIndex
-  const renderedParagraphs = useMemo(() => {
+  // Render the paragraphs up to `cursorPosition`. Used twice: once fully (an
+  // invisible "ghost" that reserves the FINAL height so nothing below shifts while
+  // typing) and once up to the current index (the visible, animating text).
+  const renderUpTo = (cursorPosition, showCursor) => {
     let charsAccumulated = 0;
     let cursorPlaced = false;
-
-    const cursorPosition = Math.min(currentIndex, totalLength);
 
     return paragraphs.map((paragraph, pIdx) => {
       // If we haven't typed anything in this paragraph yet, don't render it
@@ -67,7 +76,7 @@ export default function PremiumTypingText({ paragraphs }) {
           renderedSegments.push(
             <span key={sIdx} className={segment.color}>
               {visibleText}
-              {!cursorPlaced && (
+              {showCursor && !cursorPlaced && (
                 <span className="custom-cursor font-light ml-0.5 text-white">|</span>
               )}
             </span>
@@ -77,12 +86,13 @@ export default function PremiumTypingText({ paragraphs }) {
         }
       });
 
-      // Special case: if the cursor is at the very end of a paragraph (and not yet placed)
-      if (charsAccumulated === cursorPosition && !cursorPlaced && cursorPosition > 0) {
-        // If this is the last rendered paragraph so far, append the cursor at the end
-        const isLastParagraphSoFar = pIdx === paragraphs.length - 1 || 
-          (paragraphs[pIdx + 1] && paragraphs[pIdx + 1].reduce((acc, s) => acc + s.text.length, 0) + charsAccumulated > cursorPosition);
-        
+      // Special case: cursor sitting at the very end of a paragraph
+      if (showCursor && charsAccumulated === cursorPosition && !cursorPlaced && cursorPosition > 0) {
+        const isLastParagraphSoFar =
+          pIdx === paragraphs.length - 1 ||
+          (paragraphs[pIdx + 1] &&
+            paragraphs[pIdx + 1].reduce((acc, s) => acc + s.text.length, 0) + charsAccumulated > cursorPosition);
+
         if (isLastParagraphSoFar) {
           renderedSegments.push(
             <span key="final-cursor" className="custom-cursor font-light ml-0.5 text-white">|</span>
@@ -91,7 +101,6 @@ export default function PremiumTypingText({ paragraphs }) {
         }
       }
 
-      // Check if this paragraph has any content to display
       if (renderedSegments.length === 0) return null;
 
       return (
@@ -100,7 +109,12 @@ export default function PremiumTypingText({ paragraphs }) {
         </div>
       );
     });
-  }, [paragraphs, currentIndex, totalLength]);
+  };
+
+  // Full text, rendered once — invisible, just to reserve the final height.
+  const ghost = useMemo(() => renderUpTo(totalLength, false), [paragraphs, totalLength]);
+  // Visible text up to the current typing position.
+  const visible = renderUpTo(Math.min(currentIndex, totalLength), true);
 
   return (
     <>
@@ -117,16 +131,18 @@ export default function PremiumTypingText({ paragraphs }) {
       `}</style>
       <div
         ref={containerRef}
-        className="tracking-[-0.01em] font-black uppercase text-left max-w-[1400px] mx-auto py-4 lg:py-8 px-4"
-        style={{ 
-          fontFamily: "var(--font-display, 'Sofia Sans Condensed')", 
-          fontSize: "clamp(24px, 4.5vw, 64px)", 
-          lineHeight: "1.15",
-          wordBreak: "break-word",
-          overflowWrap: "break-word"
-        }}
+        className={`relative max-w-[1400px] mx-auto py-4 lg:py-8 px-4 ${TEXT_CLASSES}`}
+        style={TEXT_STYLE}
       >
-        {renderedParagraphs}
+        {/* Ghost: full text, invisible — locks in the final height so the sections
+            below never shift while the text types in. */}
+        <div aria-hidden="true" style={{ visibility: 'hidden' }}>
+          {ghost}
+        </div>
+        {/* Visible typed text, aligned exactly on top of the ghost. */}
+        <div className="absolute inset-0 py-4 lg:py-8 px-4">
+          {visible}
+        </div>
       </div>
     </>
   );

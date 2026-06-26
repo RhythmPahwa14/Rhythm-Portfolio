@@ -28,13 +28,12 @@ function wireGlobalScrollRefresh() {
 }
 
 /**
- * ScrollRevealText — per-letter drop-in reveal.
+ * ScrollRevealText — per-letter drop-in reveal, scrubbed to scroll position.
  *
- * Both desktop and mobile scrub the cascade to scroll position — letters drop down
- * as you scroll into the heading and retract as you scroll back up (1:1 with scroll).
- * The only difference: on mobile the cascade finishes EARLY (near the bottom of the
- * screen) at a point every heading can always reach, so even bottom-anchored headings
- * like the footer land completely instead of freezing mid-reveal.
+ * Letters drop down from above the clip line as you scroll into the heading and
+ * retract as you scroll back up (1:1 with scroll). A small stagger keeps them moving
+ * almost together. On mobile the cascade finishes earlier (a reachable point near the
+ * bottom of the screen) so bottom-anchored headings like the footer still complete.
  *
  * `stagger` = delay between letters. `start` / `end` = ScrollTrigger range (desktop).
  */
