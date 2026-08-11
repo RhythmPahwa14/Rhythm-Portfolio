@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight, Mail, Code2 } from 'lucide-react';
+import { ArrowUpRight, Mail, Code2, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import ScrollRevealText from './ScrollRevealText';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -49,6 +49,50 @@ const IndiaTime = () => {
 
 const ConnectSection = () => {
   const { time, date } = IndiaTime();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (err) {
+      console.error('Submit error:', err);
+      setStatus('error');
+      setErrorMessage(err.message || 'Failed to send message.');
+    }
+  };
 
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
@@ -105,35 +149,91 @@ const ConnectSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <motion.div className="form-field" variants={fadeUp} custom={0}>
-              <input type="text" placeholder="YOUR NAME*" required className="form-input" />
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="YOUR NAME*"
+                required
+                className="form-input"
+              />
             </motion.div>
 
             <motion.div className="form-field" variants={fadeUp} custom={1}>
-              <input type="email" placeholder="EMAIL*" required className="form-input" />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="EMAIL*"
+                required
+                className="form-input"
+              />
             </motion.div>
 
             <motion.div className="form-field" variants={fadeUp} custom={2}>
-              <textarea placeholder="YOUR MESSAGE*" required className="form-input form-textarea" rows={3} />
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="YOUR MESSAGE*"
+                required
+                className="form-input form-textarea"
+                rows={3}
+              />
             </motion.div>
 
             <motion.button
-              type="button"
-              onClick={() => {
-                window.location.href = 'mailto:rhythmpahwa14@gmail.com';
-              }}
-              className="form-submit group"
+              type="submit"
+              disabled={status === 'loading'}
+              className="form-submit group disabled:opacity-60 disabled:cursor-not-allowed"
               variants={fadeUp}
               custom={3}
             >
-              SEND MESSAGE
-              <ArrowUpRight
-                size={18}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
+              {status === 'loading' ? (
+                <>
+                  SENDING...
+                  <Loader2 size={18} className="animate-spin" />
+                </>
+              ) : status === 'success' ? (
+                <>
+                  MESSAGE SENT
+                  <CheckCircle2 size={18} className="text-green-400" />
+                </>
+              ) : (
+                <>
+                  SEND MESSAGE
+                  <ArrowUpRight
+                    size={18}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </>
+              )}
             </motion.button>
+
+            {status === 'success' && (
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-sm text-green-400 font-mono flex items-center gap-2"
+              >
+                <CheckCircle2 size={16} /> Thank you! Your message has been sent successfully.
+              </motion.p>
+            )}
+
+            {status === 'error' && (
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-sm text-red-400 font-mono flex items-center gap-2"
+              >
+                <AlertCircle size={16} /> {errorMessage || 'Failed to send message.'}
+              </motion.p>
+            )}
           </motion.form>
         </div>
       </section>
